@@ -16,7 +16,7 @@ class StartupViewModel extends BaseViewModel {
     if (token == null) {
       _navigationService.replaceWithLoginView();
     } else {
-      _navigationService.replaceWithLoginView();
+      _navigationService.replaceWithHomeView();
     }
   }
 }

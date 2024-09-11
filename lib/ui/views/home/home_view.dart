@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:whatsapp_stacked/ui/common/app_colors.dart';
-import 'package:whatsapp_stacked/ui/common/ui_helpers.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/services/token_storage_service.dart';
+import 'package:whatsapp_stacked/ui/views/home/widget/home_body.dart';
 
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+  final _tokenService = locator<TokenStorageService>();
+  final _navigationService = locator<NavigationService>();
 
   @override
   Widget builder(
@@ -14,65 +19,63 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                verticalSpaceLarge,
-                Column(
-                  children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          /// 4 tabbars 1 icon and 3 text.
+
+          bottom: TabBar(tabs: [
+            Tab(
+              icon: Icon(
+                Icons.people,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
             ),
+            const Tab(text: 'CHATS'),
+            const Tab(text: 'CALLS'),
+            const Tab(text: 'STATUS'),
+          ]),
+          leading: Container(),
+          backgroundColor: Theme.of(context).colorScheme.onSecondary,
+          title: Text(
+            "WhatsApp",
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium
+                ?.copyWith(color: Theme.of(context).colorScheme.surface),
           ),
+          centerTitle: false,
+          leadingWidth: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () async {
+                  _navigationService.replaceWithLoginView();
+                  await _tokenService.deleteToken('token');
+                },
+                child: Icon(
+                  Icons.logout,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
+              ),
+            ),
+
+            /// Toggle theme of app.
+            GestureDetector(
+              onTap: () {
+                // Provider.of<ThemeProvider>(context, listen: false)
+                //     .changeTheme();
+              },
+              child: Icon(
+                Icons.more_vert,
+                color: Theme.of(context).colorScheme.surface,
+              ),
+            )
+          ],
         ),
+        body: HomeBody(),
       ),
     );
   }

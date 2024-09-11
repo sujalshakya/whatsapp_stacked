@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/ui/views/register/register_viewmodel.dart';
 
 /// Body part of [HomeView].
 class HomeBody extends StatelessWidget {
+  final _navigationService = locator<NavigationService>();
+
   /// Contains the screens for all the tabbars.
   /// Message page is created where list of messages sent to user is shown [ChatsWidget] .
   /// Others pages remain to be built.
-  const HomeBody({
+  HomeBody({
     super.key,
   });
 
@@ -52,7 +58,7 @@ class HomeBody extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
                 child: FloatingActionButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'contact');
+                    _navigationService.navigateToContactView();
                   },
                   backgroundColor: Theme.of(context).colorScheme.onSecondary,
                   foregroundColor: Theme.of(context).colorScheme.surface,
