@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:whatsapp_stacked/ui/common/validators.dart';
+import 'package:whatsapp_stacked/base/common/validators.dart';
 
 const bool _autoTextFieldValidation = true;
 

@@ -10,7 +10,7 @@ import 'package:whatsapp_stacked/ui/views/register/repository/register_repositor
 
 class RegisterViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
-
+  final _bottomSheetService = locator<BottomSheetService>();
   final registerRepo = RegisterRepositoryImplementation();
   void registerApiRequest() async {
     final registerRequest = RegisterRequest(
@@ -22,8 +22,10 @@ class RegisterViewModel extends FormViewModel {
 
     if (register) {
       _navigationService.replaceWithLoginView();
+      _bottomSheetService.showBottomSheet(title: "Registration Successful");
     } else {
       debugPrint("registration failed");
+      _bottomSheetService.showBottomSheet(title: "Registration Unsuccessful");
     }
   }
 

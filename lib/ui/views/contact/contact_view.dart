@@ -66,7 +66,9 @@ class ContactView extends StackedView<ContactViewModel> {
             const ContactBody(),
 
             /// A list of list tiles with user data.
-            ChatsWidget(users: viewModel.users)
+            ChatsWidget(
+              users: viewModel.users,
+            )
           ],
         ),
       ),

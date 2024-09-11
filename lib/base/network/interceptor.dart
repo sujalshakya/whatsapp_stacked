@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 
 class DioInterceptor extends Interceptor {
   Dio dio = Dio();
   final _tokenService = locator<TokenStorageService>();
+  final _bottomSheetService = locator<BottomSheetService>();
 
   /// Add headers to requests, include token when token is not null in secure storage.
   @override
@@ -44,22 +46,23 @@ class DioInterceptor extends Interceptor {
   Future<void> onError(err, handler) async {
     debugPrint(err.toString());
     switch (err.response?.statusCode) {
-      // case 400:
-      //   SnackBarService.showSnackBar(content: "Bad Request");
-      // case 401:
-      //   SnackBarService.showSnackBar(content: "UnAuthorized");
-      // case 403:
-      //   SnackBarService.showSnackBar(content: "Forbidden");
-      // case 404:
-      //   SnackBarService.showSnackBar(content: "Not Found");
-      // case 429:
-      //   SnackBarService.showSnackBar(content: "Too Many Requests");
-      // case 502:
-      //   SnackBarService.showSnackBar(content: "Bad Gateway");
-      // case 504:
-      //   SnackBarService.showSnackBar(content: "UnAuthorized");
-      // case 500:
-      //   SnackBarService.showSnackBar(content: "Internal Server Error");
+      case 400:
+        _bottomSheetService.showBottomSheet(title: "Bad Request");
+
+      case 401:
+        _bottomSheetService.showBottomSheet(title: "UnAuthorized");
+      case 403:
+        _bottomSheetService.showBottomSheet(title: "Forbidden");
+      case 404:
+        _bottomSheetService.showBottomSheet(title: "Not Found");
+      case 429:
+        _bottomSheetService.showBottomSheet(title: "Too Many Requests");
+      case 502:
+        _bottomSheetService.showBottomSheet(title: "Bad Gateway");
+      case 504:
+        _bottomSheetService.showBottomSheet(title: "Gateway Timeout");
+      case 500:
+        _bottomSheetService.showBottomSheet(title: "Internal Server Error");
     }
   }
 }

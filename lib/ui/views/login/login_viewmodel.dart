@@ -9,6 +9,7 @@ import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_impl
 
 class LoginViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
+  final _bottomSheetService = locator<BottomSheetService>();
 
   final loginRepo = LoginRepositoryImplementation();
   void loginApiRequest() async {
@@ -19,8 +20,10 @@ class LoginViewModel extends FormViewModel {
 
     if (login == true) {
       _navigationService.replaceWithHomeView();
+      _bottomSheetService.showBottomSheet(title: "Login Successful");
     } else {
       debugPrint("login failed");
+      _bottomSheetService.showBottomSheet(title: "Login Unsucessful");
     }
   }
 

@@ -4,8 +4,8 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
-import 'package:whatsapp_stacked/ui/common/app_strings.dart';
-import 'package:whatsapp_stacked/ui/common/validators.dart';
+import 'package:whatsapp_stacked/base/common/app_strings.dart';
+import 'package:whatsapp_stacked/base/common/validators.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
 
 import 'register_viewmodel.dart';

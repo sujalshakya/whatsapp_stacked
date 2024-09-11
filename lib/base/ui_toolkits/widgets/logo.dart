@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_stacked/ui/common/assets.dart';
+import 'package:whatsapp_stacked/base/common/assets.dart';
 
 /// Logo of app.
 

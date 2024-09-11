@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_stacked/ui/common/app_colors.dart';
-import 'package:whatsapp_stacked/ui/common/ui_helpers.dart';
+import 'package:whatsapp_stacked/base/common/app_colors.dart';
+import 'package:whatsapp_stacked/base/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

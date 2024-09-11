@@ -5,6 +5,7 @@ import 'package:whatsapp_stacked/base/models/user.dart';
 
 class ContactViewModel extends BaseViewModel {
   late UserData users = UserData(data: []);
+
   bool fetch = true;
   final fetchRepo = FetchRepositoryImplementation();
   fetchUsers() async {

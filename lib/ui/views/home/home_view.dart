@@ -6,8 +6,6 @@ import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
-import 'package:whatsapp_stacked/ui/views/home/widget/home_body.dart';
-
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
