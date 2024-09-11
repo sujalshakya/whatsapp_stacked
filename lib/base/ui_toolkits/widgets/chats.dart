@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'package:whatsapp_stacked/base/models/user.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/message.dart';

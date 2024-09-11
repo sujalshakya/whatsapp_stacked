@@ -23,7 +23,7 @@ class AuthFooter extends StatelessWidget {
       children: [
         Text(message),
         GestureDetector(
-          onTap: () {},
+          onTap: ontap,
           child: TextLabellargeBlack(
             text: tap,
           ),

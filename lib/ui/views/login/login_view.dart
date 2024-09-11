@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
+
+import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
+import 'package:whatsapp_stacked/ui/common/app_strings.dart';
+import 'package:whatsapp_stacked/ui/common/validators.dart';
+import 'package:whatsapp_stacked/ui/views/login/login_view.form.dart';
 
 import 'login_viewmodel.dart';
 
-class LoginView extends StackedView<LoginViewModel> {
+@FormView(fields: [
+  FormTextField(name: 'email', validator: Validators.validateLogin),
+  FormTextField(name: 'password', validator: Validators.validateLogin)
+])
+class LoginView extends StackedView<LoginViewModel> with $LoginView {
   const LoginView({Key? key}) : super(key: key);
 
   @override
@@ -13,11 +25,62 @@ class LoginView extends StackedView<LoginViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-      ),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Logo(),
+            const SizedBox(
+              height: 30,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(email),
+            ),
+            // Email Textfield
+            TextFormField(controller: emailController),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(password),
+            ),
+
+            // Password textfield
+            TextFormField(controller: passwordController),
+            const SizedBox(
+              height: 20,
+            ),
+            // Login Button
+            Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      viewModel.loginApiRequest();
+                    },
+                    child: const TextLabellargeBlack(text: login))),
+            const SizedBox(
+              height: 20,
+            ),
+
+            // Line at the bottom which helps navigate to register page.
+            AuthFooter(
+                message: "Don't have an account?  ",
+                ontap: () {
+                  viewModel.ontap();
+                },
+                tap: register),
+          ]),
     );
+  }
+
+  @override
+  void onDispose(LoginViewModel viewModel) {
+    super.onDispose(viewModel);
+    disposeForm();
+  }
+
+  @override
+  void onViewModelReady(LoginViewModel viewModel) {
+    syncFormWithViewModel(viewModel);
   }
 
   @override

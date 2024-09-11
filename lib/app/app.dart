@@ -8,6 +8,7 @@ import 'package:whatsapp_stacked/ui/views/contact/contact_view.dart';
 import 'package:whatsapp_stacked/ui/views/login/login_view.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.dart';
+import 'package:whatsapp_stacked/services/login_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -24,7 +25,8 @@ import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.dar
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: LoginService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
