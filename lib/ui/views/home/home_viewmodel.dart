@@ -1,36 +1,23 @@
-import 'package:whatsapp_stacked/app/app.bottomsheets.dart';
-import 'package:whatsapp_stacked/app/app.dialogs.dart';
-import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/ui/common/app_strings.dart';
+import 'package:flutter/material.dart';
+
+import 'package:whatsapp_stacked/base/fetch_user/fetch_repository_implementation.dart';
+import 'package:whatsapp_stacked/base/models/user.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
-  final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
-
-  String get counterLabel => 'Counter is: $_counter';
-
-  int _counter = 0;
-
-  void incrementCounter() {
-    _counter++;
-    rebuildUi();
-  }
-
-  void showDialog() {
-    _dialogService.showCustomDialog(
-      variant: DialogType.infoAlert,
-      title: 'Stacked Rocks!',
-      description: 'Give stacked $_counter stars on Github',
-    );
-  }
-
-  void showBottomSheet() {
-    _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.notice,
-      title: ksHomeBottomSheetTitle,
-      description: ksHomeBottomSheetDescription,
-    );
+  late UserData users = UserData(data: []);
+  bool fetch = true;
+  final fetchRepo = FetchRepositoryImplementation();
+  void fetchUsers() async {
+    if (fetch == true) {
+      try {
+        final fetchedUsers = await fetchRepo.fetchUsersToRepository();
+        users = fetchedUsers;
+        fetch = false;
+        rebuildUi();
+      } catch (error) {
+        debugPrint('Error fetching data.');
+      }
+    }
   }
 }

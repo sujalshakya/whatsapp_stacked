@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labelsmall.dart';
 
 /// An individual chat box.
 class MessageWidget extends StatelessWidget {
+  final _navigationService = locator<NavigationService>();
+
   /// Text containing users first name.
   final String firstName;
 
@@ -16,7 +21,7 @@ class MessageWidget extends StatelessWidget {
   /// Requires [firstName]
   /// Requires [avatar
   /// Requires [lastName]
-  const MessageWidget(
+  MessageWidget(
       {super.key,
       required this.firstName,
       required this.avatar,
@@ -26,7 +31,7 @@ class MessageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, 'message');
+        _navigationService.navigateToMessageDetailView();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
