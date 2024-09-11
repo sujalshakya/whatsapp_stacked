@@ -11,17 +11,20 @@ class Validators {
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
-    } else if (!value.contains('@') || !value.contains('.')) {
+    }
+    if (!value.contains('@') || !value.contains('.')) {
       return 'Please enter a viable email addresss';
     }
-
     return null;
   }
 
   /// Dont allow controller without length of 8 and containing atleast 1 of
   /// small letter, capital letter, number and symbol.
   static String? validatePassword(String? value) {
-    if (value!.length < 8 ||
+    if (value == null || value.isEmpty) {
+      return 'Please enter your email';
+    }
+    if (value.length < 8 ||
         !value.contains(RegExp(r"[a-z]")) ||
         !value.contains(RegExp(r"[A-Z]")) ||
         (!value.contains(RegExp(r"[0-9]"))) ||

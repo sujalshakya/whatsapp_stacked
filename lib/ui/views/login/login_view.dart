@@ -12,7 +12,7 @@ import 'package:whatsapp_stacked/ui/views/login/login_view.form.dart';
 import 'login_viewmodel.dart';
 
 @FormView(fields: [
-  FormTextField(name: 'email', validator: Validators.validateLogin),
+  FormTextField(name: 'email', validator: Validators.validateEmail),
   FormTextField(name: 'password', validator: Validators.validateLogin)
 ])
 class LoginView extends StackedView<LoginViewModel> with $LoginView {
@@ -45,7 +45,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                   const InputDecoration(contentPadding: EdgeInsets.all(8)),
             ),
             if (viewModel.hasEmailValidationMessage) ...[
-              Text(viewModel.validationMessage ?? "Empty Field")
+              Text(viewModel.validationMessage ?? "Requires @ and .")
             ],
             const Padding(
               padding: EdgeInsets.all(8.0),

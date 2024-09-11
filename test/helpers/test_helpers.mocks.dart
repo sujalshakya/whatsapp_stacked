@@ -11,8 +11,12 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 import 'package:whatsapp_stacked/services/login_service.dart' as _i7;
+import 'package:whatsapp_stacked/services/register_service.dart' as _i9;
+import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i11;
 import 'package:whatsapp_stacked/ui/views/login/models/login_request.dart'
     as _i8;
+import 'package:whatsapp_stacked/ui/views/register/models/register_request_model.dart'
+    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -690,3 +694,26 @@ class MockLoginService extends _i1.Mock implements _i7.LoginService {
         returnValueForMissingStub: _i5.Future<dynamic>.value(),
       ) as _i5.Future<dynamic>);
 }
+
+/// A class which mocks [RegisterService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegisterService extends _i1.Mock implements _i9.RegisterService {
+  @override
+  _i5.Future<dynamic> registerApiRequest(
+          _i10.RegisterRequest? registerRequest) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #registerApiRequest,
+          [registerRequest],
+        ),
+        returnValue: _i5.Future<dynamic>.value(),
+        returnValueForMissingStub: _i5.Future<dynamic>.value(),
+      ) as _i5.Future<dynamic>);
+}
+
+/// A class which mocks [TokenStorageService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTokenStorageService extends _i1.Mock
+    implements _i11.TokenStorageService {}

@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class SendMessage extends StatelessWidget {
+  /// The row of widgets with textfield, button and floating action button.
+  ///
+  /// The textfield contains hint message and 3 icons:
+  /// [Icons.send] to call the [addMessage] method.
+  /// [Icons. attach_file] and [Icons.camera_alt] yet to be implemented.
+  /// The button adds controller text to messages list.
+  const SendMessage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            width: 330,
+            child: TextField(
+              // controller: context.watch<MessageViewModel>().messageController,
+              decoration: InputDecoration(
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        // context.read<MessageViewModel>().addMessage();
+                      },
+                      child: const Icon(Icons.send),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.attach_file,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.camera_alt),
+                    ),
+                  ],
+                ),
+                icon: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.emoji_emotions_outlined,
+                    color: Colors.grey,
+                  ),
+                ),
+                hintText: "Type a message",
+                contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                hintStyle: Theme.of(context)
+                    .textTheme
+                    .labelLarge
+                    ?.copyWith(color: Colors.grey),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+        FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Theme.of(context).colorScheme.onSecondary,
+          foregroundColor: Theme.of(context).colorScheme.surface,
+          shape: const CircleBorder(),
+          child: const Icon(Icons.mic),
+        )
+      ],
+    );
+  }
+}

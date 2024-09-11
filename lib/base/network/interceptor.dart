@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:whatsapp_stacked/base/service/secure_storage.dart';
+import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/services/token_storage_service.dart';
 
 class DioInterceptor extends Interceptor {
   Dio dio = Dio();
+  final _tokenService = locator<TokenStorageService>();
 
   /// Add headers to requests, include token when token is not null in secure storage.
   @override
@@ -14,7 +16,7 @@ class DioInterceptor extends Interceptor {
     options.headers.addAll({
       "Content-Type": "application/json",
     });
-    final token = await SecureStorage().getToken('token');
+    final token = await _tokenService.getToken('token');
     if (token != null) {
       options.headers.addAll({
         "Authorization": "Bearer $token",
@@ -31,7 +33,7 @@ class DioInterceptor extends Interceptor {
     String res = response.toString();
     if (res.contains("token")) {
       var login = jsonDecode(response.toString());
-      await SecureStorage().setToken('token', login['token']);
+      await _tokenService.setToken('token', login['token']);
     }
     debugPrint(response.statusCode.toString());
     super.onResponse(response, handler);
