@@ -39,14 +39,28 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
               child: Text(email),
             ),
             // Email Textfield
-            TextFormField(controller: emailController),
+            TextFormField(
+              controller: emailController,
+              decoration:
+                  const InputDecoration(contentPadding: EdgeInsets.all(8)),
+            ),
+            if (viewModel.hasEmailValidationMessage) ...[
+              Text(viewModel.validationMessage ?? "Empty Field")
+            ],
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(password),
             ),
 
             // Password textfield
-            TextFormField(controller: passwordController),
+            TextFormField(
+              controller: passwordController,
+              decoration:
+                  const InputDecoration(contentPadding: EdgeInsets.all(8)),
+            ),
+            if (viewModel.hasPasswordValidationMessage) ...[
+              Text(viewModel.validationMessage ?? "Empty Field")
+            ],
             const SizedBox(
               height: 20,
             ),

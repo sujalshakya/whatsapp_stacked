@@ -12,8 +12,8 @@ class LoginViewModel extends FormViewModel {
 
   final loginRepo = LoginRepositoryImplementation();
   void loginApiRequest() async {
-    final loginRequestModel =
-        LoginRequestModel(username: EmailValueKey, password: PasswordValueKey);
+    final loginRequestModel = LoginRequestModel(
+        username: emailValue.toString(), password: passwordValue.toString());
 
     final bool login = await loginRepo.login(loginRequestModel);
 
