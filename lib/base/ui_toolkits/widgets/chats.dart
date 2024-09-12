@@ -26,6 +26,7 @@ class ChatsWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             final user = users.data![index];
             return MessageWidget(
+              index: index,
               firstName: user.firstName,
               avatar: user.avatar,
               lastName: user.lastName,

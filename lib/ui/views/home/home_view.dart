@@ -8,6 +8,7 @@ import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
+import 'package:whatsapp_stacked/ui/views/home/widget/people_tabbar.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -81,56 +82,7 @@ class HomeView extends StackedView<HomeViewModel> {
             Column(
               children: [
                 ChatsWidget(users: viewModel.users),
-                const SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Container(
-                    color: Colors.grey,
-                    height: 2,
-                    width: 380,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.lock,
-                        size: 12,
-                      ),
-                      const Text(" Your personal messages are "),
-                      Text(
-                        "end to end encrypted",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.blue),
-                      )
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 32),
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          _navigationService.navigateToContactView();
-                        },
-                        backgroundColor:
-                            Theme.of(context).colorScheme.onSecondary,
-                        foregroundColor: Theme.of(context).colorScheme.surface,
-                        shape: const CircleBorder(),
-                        child: const Icon(Icons.message),
-                      ),
-                    ),
-                  ],
-                ),
+                PeopleTabBar(),
               ],
             ),
 

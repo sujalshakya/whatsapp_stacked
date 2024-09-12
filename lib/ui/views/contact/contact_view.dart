@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
 import 'package:whatsapp_stacked/ui/views/contact/widget/contact_body.dart';
 import 'contact_viewmodel.dart';
@@ -51,8 +53,8 @@ class ContactView extends StackedView<ContactViewModel> {
           // Toggle theme of app.
           GestureDetector(
               onTap: () {
-                // Provider.of<ThemeProvider>(context, listen: false)
-                //     .changeTheme();
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .changeTheme();
               },
               child: Icon(
                 Icons.more_vert,

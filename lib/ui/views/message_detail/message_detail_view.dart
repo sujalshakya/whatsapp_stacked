@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -8,6 +9,7 @@ import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlemedium.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/message_detail_header.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/messages_widget.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/widgets/send_message.dart';
 
 import 'message_detail_viewmodel.dart';
 
@@ -16,7 +18,9 @@ import 'message_detail_viewmodel.dart';
 ])
 class MessageDetailView extends StackedView<MessageDetailViewModel>
     with $MessageDetailView {
-  const MessageDetailView({Key? key}) : super(key: key);
+  final int index;
+
+  const MessageDetailView({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget builder(
@@ -27,28 +31,29 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        leadingWidth: 70,
         leading: Row(
           children: [
-            Icon(Icons.arrow_back,
-                color: Theme.of(context).colorScheme.surface),
-            Container(
-              height: 30,
-              width: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Theme.of(context).colorScheme.surface,
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+              child: Container(
+                  margin: const EdgeInsets.only(right: 16.0),
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundImage:
+                        NetworkImage(viewModel.users.data![index].avatar),
+                  )),
             ),
           ],
         ),
-        title: const Column(
+        title: Column(
           children: [
             Row(
               children: [
-                TextTitleLarge(text: "Name"),
+                TextTitleLarge(text: viewModel.users.data![index].firstName),
               ],
             ),
-            Row(
+            const Row(
               children: [TextTitleMedium(text: "Online")],
             ),
           ],
@@ -85,74 +90,17 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
             MessagesWidget(messages: viewModel.messages),
 
             /// Add text to list.
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      width: 310,
-                      child: TextField(
-                        controller: messageController,
-                        decoration: InputDecoration(
-                          suffixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  viewModel.addMessage();
-                                },
-                                child: const Icon(Icons.send),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.attach_file,
-                                  color:
-                                      Theme.of(context).colorScheme.onSurface,
-                                ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.camera_alt),
-                              ),
-                            ],
-                          ),
-                          icon: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.emoji_emotions_outlined,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          hintText: "Type a message",
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 16),
-                          hintStyle: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(color: Colors.grey),
-                          border: InputBorder.none,
-                        ),
-                      )),
-                ),
-                FloatingActionButton(
-                  onPressed: () {},
-                  backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                  foregroundColor: Theme.of(context).colorScheme.surface,
-                  shape: const CircleBorder(),
-                  child: const Icon(Icons.mic),
-                )
-              ],
-            )
+            SendMessage(vm: viewModel),
           ],
         ),
       ),
     );
   }
+
+  @override
+  void onViewModelReady(MessageDetailViewModel viewModel) =>
+      SchedulerBinding.instance
+          .addPostFrameCallback((timeStamp) => viewModel.fetchUsers());
 
   @override
   MessageDetailViewModel viewModelBuilder(

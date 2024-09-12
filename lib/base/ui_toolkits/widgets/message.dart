@@ -17,6 +17,7 @@ class MessageWidget extends StatelessWidget {
 
   /// Text containing users last name.
   final String lastName;
+  final int index;
 
   /// Requires [firstName]
   /// Requires [avatar
@@ -25,13 +26,14 @@ class MessageWidget extends StatelessWidget {
       {super.key,
       required this.firstName,
       required this.avatar,
-      required this.lastName});
+      required this.lastName,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _navigationService.navigateToMessageDetailView();
+        _navigationService.navigateToMessageDetailView(index: index);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
