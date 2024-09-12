@@ -9,7 +9,6 @@ interface class LoginRepositoryImplementation implements LoginRepository {
   Future<bool> login(LoginRequestModel loginRequestModel) async {
     try {
       await _loginservice.loginApiRequest(loginRequestModel);
-
       return true;
     } catch (e) {
       return false;

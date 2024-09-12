@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'home_viewmodel.dart';
@@ -65,8 +67,8 @@ class HomeView extends StackedView<HomeViewModel> {
               /// Toggle theme of app.
               GestureDetector(
                 onTap: () {
-                  // Provider.of<ThemeProvider>(context, listen: false)
-                  //     .changeTheme();
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .changeTheme();
                 },
                 child: Icon(
                   Icons.more_vert,
@@ -79,6 +81,9 @@ class HomeView extends StackedView<HomeViewModel> {
             Column(
               children: [
                 ChatsWidget(users: viewModel.users),
+                const SizedBox(
+                  height: 30,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
@@ -107,7 +112,6 @@ class HomeView extends StackedView<HomeViewModel> {
                     ],
                   ),
                 ),
-                const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

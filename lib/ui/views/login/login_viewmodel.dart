@@ -7,23 +7,25 @@ import 'package:whatsapp_stacked/ui/views/login/login_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/login/models/login_request.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation.dart';
 
-class LoginViewModel extends FormViewModel {
+class LoginViewModel extends FormViewModel with $LoginView {
   final _navigationService = locator<NavigationService>();
-  final _bottomSheetService = locator<BottomSheetService>();
+  final _snackbarService = locator<SnackbarService>();
 
   final loginRepo = LoginRepositoryImplementation();
   void loginApiRequest() async {
     final loginRequestModel = LoginRequestModel(
-        username: emailValue.toString(), password: passwordValue.toString());
+        username: emailController.text, password: passwordController.text);
 
     final bool login = await loginRepo.login(loginRequestModel);
 
     if (login == true) {
       _navigationService.replaceWithHomeView();
-      _bottomSheetService.showBottomSheet(title: "Login Successful");
+      _snackbarService.showSnackbar(
+          message: "Login Sucessful", duration: const Duration(seconds: 1));
     } else {
       debugPrint("login failed");
-      _bottomSheetService.showBottomSheet(title: "Login Unsucessful");
+      _snackbarService.showSnackbar(
+          message: "Login Unsucessful", duration: const Duration(seconds: 1));
     }
   }
 

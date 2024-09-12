@@ -8,15 +8,15 @@ import 'package:whatsapp_stacked/ui/views/register/models/register_request_model
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation.dart';
 
-class RegisterViewModel extends FormViewModel {
+class RegisterViewModel extends FormViewModel with $RegisterView {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final registerRepo = RegisterRepositoryImplementation();
   void registerApiRequest() async {
     final registerRequest = RegisterRequest(
-        email: emailValue.toString(),
-        password: passwordValue.toString(),
-        fullName: fullNameValue.toString());
+        email: emailController.text,
+        password: passwordController.text,
+        fullName: fullNameController.text);
 
     final bool register = await registerRepo.register(registerRequest);
 

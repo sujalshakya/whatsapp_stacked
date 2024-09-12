@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/from_title.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
 import 'package:whatsapp_stacked/base/common/app_strings.dart';
 import 'package:whatsapp_stacked/base/common/validators.dart';
@@ -34,34 +35,47 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
           const SizedBox(
             height: 30,
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(name),
-          ),
+          const FormTitle(text: name),
+
           // Name controller
-          TextFormField(controller: fullNameController),
-          if (viewModel.hasFullNameValidationMessage) ...[
-            Text(viewModel.validationMessage ?? "Requires text")
-          ],
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(email),
+          TextFormField(
+            controller: fullNameController,
+            decoration:
+                const InputDecoration(contentPadding: EdgeInsets.all(8)),
           ),
+          if (viewModel.hasFullNameValidationMessage) ...[
+            Text(
+              viewModel.fullNameValidationMessage!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            )
+          ],
+          const FormTitle(text: email),
 
           // Email controller
-          TextFormField(controller: emailController),
-          if (viewModel.hasEmailValidationMessage) ...[
-            Text(viewModel.validationMessage ?? "Requires @ and .")
-          ],
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(password),
+          TextFormField(
+            controller: emailController,
+            decoration:
+                const InputDecoration(contentPadding: EdgeInsets.all(8)),
           ),
+          if (viewModel.hasEmailValidationMessage) ...[
+            Text(
+              viewModel.emailValidationMessage!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            )
+          ],
+          const FormTitle(text: password),
+
           // Password controller
-          TextFormField(controller: passwordController),
+          TextFormField(
+            controller: passwordController,
+            decoration:
+                const InputDecoration(contentPadding: EdgeInsets.all(8)),
+          ),
           if (viewModel.hasPasswordValidationMessage) ...[
-            Text(viewModel.validationMessage ??
-                "Requires small letter, capital letter, integers and symbols.")
+            Text(
+              viewModel.passwordValidationMessage!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            )
           ],
           const SizedBox(
             height: 20,

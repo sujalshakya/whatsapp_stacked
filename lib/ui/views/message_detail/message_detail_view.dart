@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
+import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlelarge.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlemedium.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
@@ -64,8 +66,8 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
           /// Toggle theme of app.
           GestureDetector(
               onTap: () {
-                // Provider.of<ThemeProvider>(context, listen: false)
-                //     .changeTheme();
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .changeTheme();
               },
               child: Icon(
                 Icons.more_vert,

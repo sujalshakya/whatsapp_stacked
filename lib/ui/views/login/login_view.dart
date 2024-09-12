@@ -4,6 +4,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/from_title.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
 import 'package:whatsapp_stacked/base/common/app_strings.dart';
 import 'package:whatsapp_stacked/base/common/validators.dart';
@@ -34,32 +35,36 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
             const SizedBox(
               height: 30,
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(email),
-            ),
+            const FormTitle(text: email),
             // Email Textfield
             TextFormField(
               controller: emailController,
               decoration:
                   const InputDecoration(contentPadding: EdgeInsets.all(8)),
             ),
+
             if (viewModel.hasEmailValidationMessage) ...[
-              Text(viewModel.validationMessage ?? "Requires @ and .")
+              Text(
+                viewModel.emailValidationMessage!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              )
             ],
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(password),
-            ),
+            const FormTitle(text: password),
 
             // Password textfield
             TextFormField(
+              validator: (value) {
+                return Validators.validateLogin(value);
+              },
               controller: passwordController,
               decoration:
                   const InputDecoration(contentPadding: EdgeInsets.all(8)),
             ),
             if (viewModel.hasPasswordValidationMessage) ...[
-              Text(viewModel.validationMessage ?? "Empty Field")
+              Text(
+                viewModel.passwordValidationMessage!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              )
             ],
             const SizedBox(
               height: 20,
@@ -69,6 +74,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                 child: ElevatedButton(
                     onPressed: () {
                       viewModel.loginApiRequest();
+                      syncFormWithViewModel(viewModel);
                     },
                     child: const TextLabellargeBlack(text: login))),
             const SizedBox(
@@ -90,11 +96,6 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
   void onDispose(LoginViewModel viewModel) {
     super.onDispose(viewModel);
     disposeForm();
-  }
-
-  @override
-  void onViewModelReady(LoginViewModel viewModel) {
-    syncFormWithViewModel(viewModel);
   }
 
   @override

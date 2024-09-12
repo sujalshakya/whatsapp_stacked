@@ -108,6 +108,7 @@ MockFetchUserService getAndRegisterFetchUserService() {
   locator.registerSingleton<FetchUserService>(service);
   return service;
 }
+
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

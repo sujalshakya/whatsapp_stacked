@@ -32,6 +32,8 @@ import 'package:whatsapp_stacked/services/fetch_user_service.dart';
     LazySingleton(classType: RegisterService),
     LazySingleton(classType: TokenStorageService),
     LazySingleton(classType: FetchUserService),
+    LazySingleton(classType: SnackbarService),
+
 // @stacked-service
   ],
   bottomsheets: [
