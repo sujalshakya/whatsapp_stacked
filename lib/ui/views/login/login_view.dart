@@ -44,9 +44,12 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
             ),
 
             if (viewModel.hasEmailValidationMessage) ...[
-              Text(
-                viewModel.emailValidationMessage!,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  viewModel.emailValidationMessage!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
               )
             ],
             const FormTitle(text: password),
@@ -61,9 +64,12 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                   const InputDecoration(contentPadding: EdgeInsets.all(8)),
             ),
             if (viewModel.hasPasswordValidationMessage) ...[
-              Text(
-                viewModel.passwordValidationMessage!,
-                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  viewModel.passwordValidationMessage!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
               )
             ],
             const SizedBox(

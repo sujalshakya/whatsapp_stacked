@@ -6,7 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/theme_provider.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'package:whatsapp_stacked/ui/views/home/widget/people_tabbar.dart';
 import 'home_viewmodel.dart';
@@ -26,7 +25,7 @@ class HomeView extends StackedView<HomeViewModel> {
       length: 4,
       child: Scaffold(
           appBar: AppBar(
-            /// 4 tabbars 1 icon and 3 text.
+            /// 4 tabbars with 1 icon and 3 text.
 
             bottom: TabBar(tabs: [
               Tab(
@@ -79,12 +78,7 @@ class HomeView extends StackedView<HomeViewModel> {
             ],
           ),
           body: TabBarView(children: [
-            Column(
-              children: [
-                ChatsWidget(users: viewModel.users),
-                PeopleTabBar(),
-              ],
-            ),
+            PeopleTabBar(vm: viewModel),
 
             /// A list of pages for tabbar yet to be made.
             const SizedBox(),

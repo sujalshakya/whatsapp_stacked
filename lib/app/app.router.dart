@@ -105,8 +105,11 @@ class StackedRouter extends _i1.RouterBase {
     _i7.MessageDetailView: (data) {
       final args = data.getArgs<MessageDetailViewArguments>(nullOk: false);
       return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i7.MessageDetailView(key: args.key, index: args.index),
+        builder: (context) => _i7.MessageDetailView(
+            key: args.key,
+            index: args.index,
+            avatar: args.avatar,
+            firstName: args.firstName),
         settings: data,
       );
     },
@@ -145,26 +148,35 @@ class MessageDetailViewArguments {
   const MessageDetailViewArguments({
     this.key,
     required this.index,
+    required this.avatar,
+    required this.firstName,
   });
 
   final _i8.Key? key;
 
   final int index;
 
+  final String avatar;
+
+  final String firstName;
+
   @override
   String toString() {
-    return '{"key": "$key", "index": "$index"}';
+    return '{"key": "$key", "index": "$index", "avatar": "$avatar", "firstName": "$firstName"}';
   }
 
   @override
   bool operator ==(covariant MessageDetailViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.index == index;
+    return other.key == key &&
+        other.index == index &&
+        other.avatar == avatar &&
+        other.firstName == firstName;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ index.hashCode;
+    return key.hashCode ^ index.hashCode ^ avatar.hashCode ^ firstName.hashCode;
   }
 }
 
@@ -244,6 +256,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToMessageDetailView({
     _i8.Key? key,
     required int index,
+    required String avatar,
+    required String firstName,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -251,7 +265,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.messageDetailView,
-        arguments: MessageDetailViewArguments(key: key, index: index),
+        arguments: MessageDetailViewArguments(
+            key: key, index: index, avatar: avatar, firstName: firstName),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -333,6 +348,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> replaceWithMessageDetailView({
     _i8.Key? key,
     required int index,
+    required String avatar,
+    required String firstName,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -340,7 +357,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.messageDetailView,
-        arguments: MessageDetailViewArguments(key: key, index: index),
+        arguments: MessageDetailViewArguments(
+            key: key, index: index, avatar: avatar, firstName: firstName),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

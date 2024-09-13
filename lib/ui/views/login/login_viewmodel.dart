@@ -21,11 +21,15 @@ class LoginViewModel extends FormViewModel with $LoginView {
     if (login == true) {
       _navigationService.replaceWithHomeView();
       _snackbarService.showSnackbar(
-          message: "Login Sucessful", duration: const Duration(seconds: 1));
+        message: "Login Sucessful",
+        duration: const Duration(seconds: 1),
+      );
     } else {
       debugPrint("login failed");
       _snackbarService.showSnackbar(
-          message: "Login Unsucessful", duration: const Duration(seconds: 1));
+        message: "Login Unsucessful",
+        duration: const Duration(seconds: 1),
+      );
     }
   }
 

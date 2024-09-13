@@ -36,7 +36,6 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
             height: 30,
           ),
           const FormTitle(text: name),
-
           // Name controller
           TextFormField(
             controller: fullNameController,
@@ -44,9 +43,12 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
                 const InputDecoration(contentPadding: EdgeInsets.all(8)),
           ),
           if (viewModel.hasFullNameValidationMessage) ...[
-            Text(
-              viewModel.fullNameValidationMessage!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                viewModel.fullNameValidationMessage!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
             )
           ],
           const FormTitle(text: email),
@@ -58,9 +60,12 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
                 const InputDecoration(contentPadding: EdgeInsets.all(8)),
           ),
           if (viewModel.hasEmailValidationMessage) ...[
-            Text(
-              viewModel.emailValidationMessage!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                viewModel.emailValidationMessage!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
             )
           ],
           const FormTitle(text: password),
@@ -72,9 +77,12 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
                 const InputDecoration(contentPadding: EdgeInsets.all(8)),
           ),
           if (viewModel.hasPasswordValidationMessage) ...[
-            Text(
-              viewModel.passwordValidationMessage!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                viewModel.passwordValidationMessage!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
             )
           ],
           const SizedBox(
@@ -86,6 +94,7 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
               child: ElevatedButton(
                   onPressed: () {
                     viewModel.registerApiRequest();
+                    syncFormWithViewModel(viewModel);
                   },
                   child: const TextLabellargeBlack(text: register))),
           const SizedBox(
@@ -109,11 +118,6 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
   void onDispose(RegisterViewModel viewModel) {
     super.onDispose(viewModel);
     disposeForm();
-  }
-
-  @override
-  void onViewModelReady(RegisterViewModel viewModel) {
-    syncFormWithViewModel(viewModel);
   }
 
   @override

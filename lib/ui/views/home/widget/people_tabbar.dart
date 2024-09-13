@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
+import 'package:whatsapp_stacked/ui/views/home/home_viewmodel.dart';
 
 class PeopleTabBar extends StatelessWidget {
-  PeopleTabBar({
-    super.key,
-  });
+  PeopleTabBar({super.key, required this.vm});
+
+  /// [ViewModel] of the current view.
+  final HomeViewModel vm;
   final _navigationService = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        ChatsWidget(users: vm.users),
         const SizedBox(
           height: 30,
         ),

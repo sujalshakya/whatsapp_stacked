@@ -9,7 +9,7 @@ import 'package:whatsapp_stacked/services/token_storage_service.dart';
 class DioInterceptor extends Interceptor {
   Dio dio = Dio();
   final _tokenService = locator<TokenStorageService>();
-  final _bottomSheetService = locator<BottomSheetService>();
+  final _snackbarService = locator<SnackbarService>();
 
   /// Add headers to requests, include token when token is not null in secure storage.
   @override
@@ -47,22 +47,30 @@ class DioInterceptor extends Interceptor {
     debugPrint(err.toString());
     switch (err.response?.statusCode) {
       case 400:
-        _bottomSheetService.showBottomSheet(title: "Bad Request");
-
+        _snackbarService.showSnackbar(
+            message: 'Bad Request', duration: const Duration(seconds: 2));
       case 401:
-        _bottomSheetService.showBottomSheet(title: "UnAuthorized");
+        _snackbarService.showSnackbar(
+            message: 'UnAuthorized', duration: const Duration(seconds: 2));
       case 403:
-        _bottomSheetService.showBottomSheet(title: "Forbidden");
+        _snackbarService.showSnackbar(
+            message: 'Forbidden', duration: const Duration(seconds: 2));
       case 404:
-        _bottomSheetService.showBottomSheet(title: "Not Found");
+        _snackbarService.showSnackbar(
+            message: 'Not Found', duration: const Duration(seconds: 2));
       case 429:
-        _bottomSheetService.showBottomSheet(title: "Too Many Requests");
+        _snackbarService.showSnackbar(
+            message: 'Too Many Requests', duration: const Duration(seconds: 2));
       case 502:
-        _bottomSheetService.showBottomSheet(title: "Bad Gateway");
+        _snackbarService.showSnackbar(
+            message: 'Bad Gateway', duration: const Duration(seconds: 2));
       case 504:
-        _bottomSheetService.showBottomSheet(title: "Gateway Timeout");
+        _snackbarService.showSnackbar(
+            message: 'Gateway Timeout', duration: const Duration(seconds: 2));
       case 500:
-        _bottomSheetService.showBottomSheet(title: "Internal Server Error");
+        _snackbarService.showSnackbar(
+            message: 'Internal Server Error',
+            duration: const Duration(seconds: 2));
     }
   }
 }

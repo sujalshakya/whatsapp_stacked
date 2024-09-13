@@ -33,7 +33,8 @@ class MessageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _navigationService.navigateToMessageDetailView(index: index);
+        _navigationService.navigateToMessageDetailView(
+            index: index, avatar: avatar, firstName: firstName);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

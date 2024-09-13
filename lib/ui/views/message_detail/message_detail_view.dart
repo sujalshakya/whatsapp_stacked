@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlelarge.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlemedium.dart';
-import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/message_detail_header.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/messages_widget.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/send_message.dart';
@@ -16,11 +14,17 @@ import 'message_detail_viewmodel.dart';
 @FormView(fields: [
   FormTextField(name: 'message'),
 ])
-class MessageDetailView extends StackedView<MessageDetailViewModel>
-    with $MessageDetailView {
+class MessageDetailView extends StackedView<MessageDetailViewModel> {
   final int index;
+  final String avatar;
+  final String firstName;
 
-  const MessageDetailView({Key? key, required this.index}) : super(key: key);
+  const MessageDetailView(
+      {Key? key,
+      required this.index,
+      required this.avatar,
+      required this.firstName})
+      : super(key: key);
 
   @override
   Widget builder(
@@ -40,8 +44,7 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
                   margin: const EdgeInsets.only(right: 16.0),
                   child: CircleAvatar(
                     radius: 22,
-                    backgroundImage:
-                        NetworkImage(viewModel.users.data![index].avatar),
+                    backgroundImage: NetworkImage(avatar),
                   )),
             ),
           ],
@@ -50,7 +53,7 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
           children: [
             Row(
               children: [
-                TextTitleLarge(text: viewModel.users.data![index].firstName),
+                TextTitleLarge(text: firstName),
               ],
             ),
             const Row(
@@ -96,11 +99,6 @@ class MessageDetailView extends StackedView<MessageDetailViewModel>
       ),
     );
   }
-
-  @override
-  void onViewModelReady(MessageDetailViewModel viewModel) =>
-      SchedulerBinding.instance
-          .addPostFrameCallback((timeStamp) => viewModel.fetchUsers());
 
   @override
   MessageDetailViewModel viewModelBuilder(

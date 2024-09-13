@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/chats.dart';
+import 'package:whatsapp_stacked/ui/views/contact/contact_viewmodel.dart';
 import 'package:whatsapp_stacked/ui/views/contact/widget/contact_group.dart';
 
 class ContactBody extends StatelessWidget {
-  const ContactBody({
-    super.key,
-  });
+  const ContactBody({super.key, required this.vm});
+
+  /// [ViewModel] of the current view.
+  final ContactViewModel vm;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Row(
+        const Row(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -18,19 +21,19 @@ class ContactBody extends StatelessWidget {
             ),
           ],
         ),
-        ContactGroup(
+        const ContactGroup(
           text: 'New Group',
           icon: Icons.people,
         ),
-        ContactGroup(
+        const ContactGroup(
           text: 'New Contact',
           icon: Icons.people,
         ),
-        ContactGroup(
+        const ContactGroup(
           text: 'New Community',
           icon: Icons.people,
         ),
-        Row(
+        const Row(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -38,11 +41,11 @@ class ContactBody extends StatelessWidget {
             ),
           ],
         ),
-        ContactGroup(
+        const ContactGroup(
           text: 'Businesses',
           icon: Icons.house,
         ),
-        Row(
+        const Row(
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -50,6 +53,9 @@ class ContactBody extends StatelessWidget {
             ),
           ],
         ),
+        ChatsWidget(
+          users: vm.users,
+        )
       ],
     );
   }

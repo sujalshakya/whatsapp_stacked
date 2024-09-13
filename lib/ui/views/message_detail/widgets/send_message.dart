@@ -9,7 +9,10 @@ class SendMessage extends StatelessWidget with $MessageDetailView {
   /// [Icons.send] to call the [addMessage] method.
   /// [Icons. attach_file] and [Icons.camera_alt] yet to be implemented.
   /// The button adds controller text to messages list.
+  /// Requires [vm]
   const SendMessage({super.key, required this.vm});
+
+  /// [ViewModel] of the current view.
   final MessageDetailViewModel vm;
   @override
   Widget build(BuildContext context) {
