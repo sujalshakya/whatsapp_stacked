@@ -6,6 +6,7 @@ import 'package:whatsapp_stacked/services/login_service.dart';
 import 'package:whatsapp_stacked/services/register_service.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'package:whatsapp_stacked/services/fetch_user_service.dart';
+import 'package:whatsapp_stacked/services/dio_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -18,6 +19,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<RegisterService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<TokenStorageService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchUserService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -28,6 +30,7 @@ void registerServices() {
   getAndRegisterRegisterService();
   getAndRegisterTokenStorageService();
   getAndRegisterFetchUserService();
+  getAndRegisterDioService();
 // @stacked-mock-register
 }
 
@@ -109,6 +112,12 @@ MockFetchUserService getAndRegisterFetchUserService() {
   return service;
 }
 
+MockDioService getAndRegisterDioService() {
+  _removeRegistrationIfExists<DioService>();
+  final service = MockDioService();
+  locator.registerSingleton<DioService>(service);
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

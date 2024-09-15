@@ -10,12 +10,13 @@ import 'package:whatsapp_stacked/services/fetch_user_service.dart';
 interface class FetchRepositoryImplementation implements FetchRepository {
   final _fetchService = locator<FetchUserService>();
   @override
-  fetchUsersToRepository() async {
+  Future<UserData> fetchUsersToRepository() async {
     try {
       final response = await _fetchService.fetchUsersApiCall();
       return UserData.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
+      throw 'No User!';
     }
   }
 }

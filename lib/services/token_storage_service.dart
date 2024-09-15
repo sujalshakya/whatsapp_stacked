@@ -1,20 +1,20 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenStorageService {
-  final FlutterSecureStorage storage = const FlutterSecureStorage();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   /// Store value
   setToken(String key, String value) async {
-    await storage.write(key: key, value: value);
+    await _storage.write(key: key, value: value);
   }
 
   /// Read value
   getToken(String key) async {
-    return await storage.read(key: key);
+    return await _storage.read(key: key);
   }
 
   /// Delete Value
   deleteToken(String key) async {
-    await storage.delete(key: key);
+    await _storage.delete(key: key);
   }
 }
