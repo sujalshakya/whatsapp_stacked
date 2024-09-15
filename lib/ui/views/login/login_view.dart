@@ -79,7 +79,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
             Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      viewModel.loginApiRequest();
+                      viewModel.loginFirebase();
                       syncFormWithViewModel(viewModel);
                     },
                     child: const TextLabellargeBlack(text: login))),

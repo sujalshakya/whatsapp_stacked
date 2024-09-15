@@ -93,7 +93,7 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
           Center(
               child: ElevatedButton(
                   onPressed: () {
-                    viewModel.registerApiRequest();
+                    viewModel.registerFirebase();
                     syncFormWithViewModel(viewModel);
                   },
                   child: const TextLabellargeBlack(text: register))),

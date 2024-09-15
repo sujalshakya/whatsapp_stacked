@@ -1,16 +1,17 @@
-import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/base/common/api_urls.dart';
-import 'package:whatsapp_stacked/services/dio_service.dart';
-import 'package:whatsapp_stacked/ui/views/login/models/login_request.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class LoginService {
-  final _dioService = locator<DioService>();
-
-  Future loginApiRequest(LoginRequestModel loginRequestModel) async {
-    final dio = _dioService.dio;
-
-    final response = await dio.post((ApiUrls.login), data: loginRequestModel);
-
-    return response;
+  final _firebaseAuth = FirebaseAuth.instance;
+  loginFirebase(String email, String password) async {
+    try {
+      return await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.toString());
+      return e;
+    }
   }
 }
