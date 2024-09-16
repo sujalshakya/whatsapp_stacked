@@ -20,7 +20,7 @@ class PeopleTabBar extends StatelessWidget {
           )
         : Column(
             children: [
-              ChatsWidget(users: vm.users),
+              SizedBox(height: 450, child: ChatsWidget(users: vm.users)),
               const SizedBox(
                 height: 30,
               ),

@@ -5,26 +5,25 @@ import 'package:flutter/material.dart';
 final db = FirebaseFirestore.instance;
 final _firebaseAuth = FirebaseAuth.instance;
 
-class FetchMessagesService {
+class FetchOtherMessagesService {
   Future<List<Map<String, dynamic>>> fetchUsers(String uid) async {
-    List<Map<String, dynamic>> usermessageList = [];
+    List<Map<String, dynamic>> othermessageList = [];
 
     try {
       QuerySnapshot querySnapshot = await db
           .collection("chats")
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(uid)
+          .doc(uid)
+          .collection(_firebaseAuth.currentUser!.uid)
           .get();
 
       for (var docSnapshot in querySnapshot.docs) {
         Map<String, dynamic> userData =
             docSnapshot.data() as Map<String, dynamic>;
-        usermessageList.add(userData);
+        othermessageList.add(userData);
       }
     } catch (e) {
       debugPrint("Error completing: $e");
     }
-
-    return usermessageList;
+    return othermessageList;
   }
 }

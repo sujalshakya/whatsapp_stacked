@@ -8,22 +8,26 @@ class MessagesWidget extends StatelessWidget {
   /// sent to user is [ColorScheme.surface] in color.
   /// The even indexed message in [messages] which signifies message
   /// sent by user is [ColorScheme.secondary] in color.
-  const MessagesWidget({
-    super.key,
-    required this.messages,
-  });
+  const MessagesWidget(
+      {super.key,
+      required this.messages,
+      required this.otherMessages,
+      required this.allMessages});
 
   /// List of texts added by the user
   final List<Map<String, dynamic>> messages;
+  final List<Map<String, dynamic>> otherMessages;
+  final List<Map<String, dynamic>> allMessages;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
         reverse: true,
-        itemCount: messages.length,
+        itemCount: allMessages.length,
         itemBuilder: (context, index) {
-          final isUserMessage = index.isOdd;
-          final messageData = messages[index];
+          final isUserMessage = messages.contains(allMessages[index]);
+          final messageData = allMessages[index];
           final message = messageData['message'];
           return Align(
             alignment:

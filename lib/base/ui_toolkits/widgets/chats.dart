@@ -18,18 +18,16 @@ class ChatsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 450,
-      child: ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (context, index) {
-            final user = users[index];
-            return MessageWidget(
-              index: index,
-              uid: user['Uid'],
-              firstName: user['name'],
-            );
-          }),
-    );
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: users.length,
+        itemBuilder: (context, index) {
+          final user = users[index];
+          return MessageWidget(
+            index: index,
+            uid: user['Uid'],
+            firstName: user['name'],
+          );
+        });
   }
 }

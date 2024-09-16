@@ -13,6 +13,8 @@ import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 import 'package:whatsapp_stacked/services/dio_service.dart' as _i12;
 import 'package:whatsapp_stacked/services/fetch_messages_service.dart' as _i15;
+import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart'
+    as _i16;
 import 'package:whatsapp_stacked/services/fetch_user_service.dart' as _i11;
 import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i10;
 import 'package:whatsapp_stacked/ui/views/login/login_service.dart' as _i8;
@@ -869,4 +871,23 @@ class MockRegisterRepositoryImplementationService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchMessagesService extends _i1.Mock
-    implements _i15.FetchMessagesService {}
+    implements _i15.FetchMessagesService {
+  @override
+  _i6.Future<List<Map<String, dynamic>>> fetchUsers(String? uid) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchUsers,
+          [uid],
+        ),
+        returnValue: _i6.Future<List<Map<String, dynamic>>>.value(
+            <Map<String, dynamic>>[]),
+        returnValueForMissingStub: _i6.Future<List<Map<String, dynamic>>>.value(
+            <Map<String, dynamic>>[]),
+      ) as _i6.Future<List<Map<String, dynamic>>>);
+}
+
+/// A class which mocks [FetchOtherMessagesService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFetchOtherMessagesService extends _i1.Mock
+    implements _i16.FetchOtherMessagesService {}

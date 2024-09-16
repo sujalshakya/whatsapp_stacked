@@ -10,6 +10,7 @@ import 'package:whatsapp_stacked/services/dio_service.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/services/fetch_messages_service.dart';
+import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -28,6 +29,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<RegisterRepositoryImplementationService>(
       onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchMessagesService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<FetchOtherMessagesService>(
+      onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -42,6 +45,7 @@ void registerServices() {
   getAndRegisterLoginRepositoryImplementationService();
   getAndRegisterRegisterRepositoryImplementationService();
   getAndRegisterFetchMessagesService();
+  getAndRegisterFetchOtherMessagesService();
 // @stacked-mock-register
 }
 
@@ -150,6 +154,13 @@ MockFetchMessagesService getAndRegisterFetchMessagesService() {
   _removeRegistrationIfExists<FetchMessagesService>();
   final service = MockFetchMessagesService();
   locator.registerSingleton<FetchMessagesService>(service);
+  return service;
+}
+
+MockFetchOtherMessagesService getAndRegisterFetchOtherMessagesService() {
+  _removeRegistrationIfExists<FetchOtherMessagesService>();
+  final service = MockFetchOtherMessagesService();
+  locator.registerSingleton<FetchOtherMessagesService>(service);
   return service;
 }
 // @stacked-mock-create
