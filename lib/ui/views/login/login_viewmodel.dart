@@ -4,12 +4,12 @@ import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 
 import 'package:whatsapp_stacked/ui/views/login/login_view.form.dart';
-import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation.dart';
+import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
 
 class LoginViewModel extends FormViewModel with $LoginView {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
-  final _loginrepo = LoginRepositoryImplementation();
+  final _loginrepo = locator<LoginRepositoryImplementationService>();
 
   void loginFirebase() async {
     if (!hasAnyValidationMessage) {

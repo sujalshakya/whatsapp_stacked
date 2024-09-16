@@ -7,6 +7,8 @@ import 'package:whatsapp_stacked/services/register_service.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'package:whatsapp_stacked/services/fetch_user_service.dart';
 import 'package:whatsapp_stacked/services/dio_service.dart';
+import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
+import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -20,6 +22,10 @@ import 'test_helpers.mocks.dart';
   MockSpec<TokenStorageService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchUserService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<LoginRepositoryImplementationService>(
+      onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<RegisterRepositoryImplementationService>(
+      onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -31,6 +37,8 @@ void registerServices() {
   getAndRegisterTokenStorageService();
   getAndRegisterFetchUserService();
   getAndRegisterDioService();
+  getAndRegisterLoginRepositoryImplementationService();
+  getAndRegisterRegisterRepositoryImplementationService();
 // @stacked-mock-register
 }
 
@@ -116,6 +124,22 @@ MockDioService getAndRegisterDioService() {
   _removeRegistrationIfExists<DioService>();
   final service = MockDioService();
   locator.registerSingleton<DioService>(service);
+  return service;
+}
+
+MockLoginRepositoryImplementationService
+    getAndRegisterLoginRepositoryImplementationService() {
+  _removeRegistrationIfExists<LoginRepositoryImplementationService>();
+  final service = MockLoginRepositoryImplementationService();
+  locator.registerSingleton<LoginRepositoryImplementationService>(service);
+  return service;
+}
+
+MockRegisterRepositoryImplementationService
+    getAndRegisterRegisterRepositoryImplementationService() {
+  _removeRegistrationIfExists<RegisterRepositoryImplementationService>();
+  final service = MockRegisterRepositoryImplementationService();
+  locator.registerSingleton<RegisterRepositoryImplementationService>(service);
   return service;
 }
 // @stacked-mock-create

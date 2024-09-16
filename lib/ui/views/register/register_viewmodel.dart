@@ -6,14 +6,14 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
-import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation.dart';
+import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 
 class RegisterViewModel extends FormViewModel with $RegisterView {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
   final _firebaseAuth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
-  final _registerRepo = RegisterRepositoryImplementation();
+  final _registerRepo = locator<RegisterRepositoryImplementationService>();
   void registerFirebase() async {
     if (!hasEmailValidationMessage && !hasPasswordValidationMessage) {
       try {

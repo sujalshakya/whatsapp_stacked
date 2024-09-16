@@ -13,7 +13,6 @@ class FetchUserService {
       for (var docSnapshot in querySnapshot.docs) {
         Map<String, dynamic> userData =
             docSnapshot.data() as Map<String, dynamic>;
-        print(userData);
         userList.add(userData);
       }
     } catch (e) {

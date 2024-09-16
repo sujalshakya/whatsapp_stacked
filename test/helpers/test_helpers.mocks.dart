@@ -13,7 +13,11 @@ import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 import 'package:whatsapp_stacked/services/dio_service.dart' as _i12;
 import 'package:whatsapp_stacked/services/fetch_user_service.dart' as _i11;
+import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart'
+    as _i13;
 import 'package:whatsapp_stacked/services/login_service.dart' as _i8;
+import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart'
+    as _i14;
 import 'package:whatsapp_stacked/services/register_service.dart' as _i9;
 import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i10;
 
@@ -772,7 +776,19 @@ class MockTokenStorageService extends _i1.Mock
 /// A class which mocks [FetchUserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchUserService extends _i1.Mock implements _i11.FetchUserService {}
+class MockFetchUserService extends _i1.Mock implements _i11.FetchUserService {
+  @override
+  _i6.Future<List<Map<String, dynamic>>> fetchUsers() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchUsers,
+          [],
+        ),
+        returnValue: _i6.Future<List<Map<String, dynamic>>>.value(
+            <Map<String, dynamic>>[]),
+        returnValueForMissingStub: _i6.Future<List<Map<String, dynamic>>>.value(
+            <Map<String, dynamic>>[]),
+      ) as _i6.Future<List<Map<String, dynamic>>>);
+}
 
 /// A class which mocks [DioService].
 ///
@@ -800,3 +816,15 @@ class MockDioService extends _i1.Mock implements _i12.DioService {
         returnValueForMissingStub: null,
       );
 }
+
+/// A class which mocks [LoginRepositoryImplementationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoginRepositoryImplementationService extends _i1.Mock
+    implements _i13.LoginRepositoryImplementationService {}
+
+/// A class which mocks [RegisterRepositoryImplementationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegisterRepositoryImplementationService extends _i1.Mock
+    implements _i14.RegisterRepositoryImplementationService {}
