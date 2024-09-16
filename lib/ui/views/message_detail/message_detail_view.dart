@@ -15,16 +15,9 @@ import 'message_detail_viewmodel.dart';
   FormTextField(name: 'message'),
 ])
 class MessageDetailView extends StackedView<MessageDetailViewModel> {
-  final int index;
-  final String avatar;
-  final String firstName;
-
-  const MessageDetailView(
-      {Key? key,
-      required this.index,
-      required this.avatar,
-      required this.firstName})
-      : super(key: key);
+  const MessageDetailView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget builder(
@@ -42,21 +35,20 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
               padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
               child: Container(
                   margin: const EdgeInsets.only(right: 16.0),
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 22,
-                    backgroundImage: NetworkImage(avatar),
                   )),
             ),
           ],
         ),
-        title: Column(
+        title: const Column(
           children: [
             Row(
               children: [
-                TextTitleLarge(text: firstName),
+                TextTitleLarge(text: "firstName"),
               ],
             ),
-            const Row(
+            Row(
               children: [TextTitleMedium(text: "Online")],
             ),
           ],

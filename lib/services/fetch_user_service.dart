@@ -1,13 +1,25 @@
-import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/base/common/api_urls.dart';
-import 'package:whatsapp_stacked/services/dio_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+final db = FirebaseFirestore.instance;
 
 class FetchUserService {
-  final _dioService = locator<DioService>();
+  Future<List<Map<String, dynamic>>> fetchUsers() async {
+    List<Map<String, dynamic>> userList = [];
 
-  fetchUsersApiCall() async {
-    final dio = _dioService.dio;
+    try {
+      QuerySnapshot querySnapshot = await db.collection("users").get();
 
-    return await dio.get((ApiUrls.fetch));
+      for (var docSnapshot in querySnapshot.docs) {
+        Map<String, dynamic> userData =
+            docSnapshot.data() as Map<String, dynamic>;
+        print(userData);
+        userList.add(userData);
+      }
+    } catch (e) {
+      debugPrint("Error completing: $e");
+    }
+
+    return userList;
   }
 }

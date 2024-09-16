@@ -17,17 +17,19 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
   void registerFirebase() async {
     if (!hasEmailValidationMessage && !hasPasswordValidationMessage) {
       try {
-        await _registerRepo.register(
+        bool register = await _registerRepo.register(
           emailController.text,
           passwordController.text,
         );
-        addUser();
+        if (register == true) {
+          addUser();
 
-        _navigationService.replaceWithLoginView();
-        _snackbarService.showSnackbar(
-          message: "Registration Sucessful",
-          duration: const Duration(seconds: 1),
-        );
+          _navigationService.replaceWithLoginView();
+          _snackbarService.showSnackbar(
+            message: "Registration Sucessful",
+            duration: const Duration(seconds: 1),
+          );
+        }
       } on FirebaseAuthException catch (e) {
         _snackbarService.showSnackbar(
           message: e.message.toString(),
@@ -41,12 +43,13 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
     final user = <String, String>{
       "email": emailController.text,
       "Uid": _firebaseAuth.currentUser!.uid,
+      "name": fullNameController.text
     };
     _firebaseAuth.currentUser!.updateDisplayName(fullNameController.text);
 
     db
         .collection("users")
-        .doc(fullNameController.text)
+        .doc()
         .set(user)
         .onError((e, _) => debugPrint("Error writing document: $e"));
   }

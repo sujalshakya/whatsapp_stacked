@@ -13,28 +13,26 @@ class MessageWidget extends StatelessWidget {
   final String firstName;
 
   /// URL of profile picture converted to image using [NetworkImage].
-  final String avatar;
 
   /// Text containing users last name.
-  final String lastName;
   final int index;
 
+  /// User id of chatter.
+  final String uid;
+
   /// Requires [firstName]
-  /// Requires [avatar
-  /// Requires [lastName]
+
   MessageWidget(
       {super.key,
       required this.firstName,
-      required this.avatar,
-      required this.lastName,
-      required this.index});
+      required this.index,
+      required this.uid});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _navigationService.navigateToMessageDetailView(
-            index: index, avatar: avatar, firstName: firstName);
+        _navigationService.navigateToMessageDetailView();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -42,9 +40,8 @@ class MessageWidget extends StatelessWidget {
           children: [
             Container(
                 margin: const EdgeInsets.only(right: 16.0),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 20,
-                  backgroundImage: NetworkImage(avatar),
                 )),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -54,8 +51,6 @@ class MessageWidget extends StatelessWidget {
                   Row(
                     children: [
                       LabelLarge(text: firstName),
-                      const Text(" "),
-                      LabelLarge(text: lastName),
                     ],
                   ),
                   const Text("Message")

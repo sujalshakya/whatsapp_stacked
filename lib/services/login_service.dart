@@ -5,13 +5,14 @@ class LoginService {
   final _firebaseAuth = FirebaseAuth.instance;
   loginFirebase(String email, String password) async {
     try {
-      return await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      return true;
     } on FirebaseAuthException catch (e) {
       debugPrint(e.toString());
-      return e;
+      return false;
     }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
@@ -14,20 +13,15 @@ class LoginViewModel extends FormViewModel with $LoginView {
 
   void loginFirebase() async {
     if (!hasAnyValidationMessage) {
-      try {
-        _loginrepo.login(emailController.text, passwordController.text);
-
+      final login =
+          await _loginrepo.login(emailController.text, passwordController.text);
+      if (login == true) {
         _navigationService.replaceWithHomeView();
         _snackbarService.showSnackbar(
           message: "Login Sucessful",
           duration: const Duration(seconds: 1),
         );
-      } on FirebaseAuthException catch (e) {
-        _snackbarService.showSnackbar(
-          message: e.message.toString(),
-          duration: const Duration(seconds: 1),
-        );
-      }
+      } else {}
     }
   }
 

@@ -1,5 +1,5 @@
-import 'package:whatsapp_stacked/base/models/user.dart';
+// import 'package:whatsapp_stacked/base/models/user.dart';
 
-abstract class FetchRepository {
-  Future<UserData> fetchUsersToRepository();
-}
+// abstract class FetchRepository {
+//   Future<UserCollection> fetchUsersToRepository();
+// }

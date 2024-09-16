@@ -5,11 +5,11 @@ import 'package:whatsapp_stacked/ui/views/register/repository/register_repositor
 interface class RegisterRepositoryImplementation implements RegisterRepository {
   final _registerservice = locator<RegisterService>();
   @override
-  Future<String?> register(String email, String password) async {
+  Future<bool> register(String email, String password) async {
     try {
       return await _registerservice.registerFirebase(email, password);
     } catch (e) {
-      return null;
+      return false;
     }
   }
 }

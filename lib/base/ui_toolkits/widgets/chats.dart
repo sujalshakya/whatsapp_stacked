@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:whatsapp_stacked/base/models/user.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/message.dart';
 
 /// This is used to build list of user chats.
@@ -15,21 +14,20 @@ class ChatsWidget extends StatelessWidget {
   });
 
   /// List of user data.
-  final UserData users;
+  final List<dynamic> users;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 450,
       child: ListView.builder(
-          itemCount: users.data!.length,
+          itemCount: users.length,
           itemBuilder: (context, index) {
-            final user = users.data![index];
+            final user = users[index];
             return MessageWidget(
               index: index,
-              firstName: user.firstName,
-              avatar: user.avatar,
-              lastName: user.lastName,
+              uid: user['Uid'],
+              firstName: user['name'],
             );
           }),
     );
