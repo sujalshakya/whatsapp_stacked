@@ -14,16 +14,17 @@ class MessagesWidget extends StatelessWidget {
   });
 
   /// List of texts added by the user
-  final List<String> messages;
-
+  final List<Map<String, dynamic>> messages;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
+        reverse: true,
         itemCount: messages.length,
         itemBuilder: (context, index) {
-          final message = messages[index];
           final isUserMessage = index.isOdd;
+          final messageData = messages[index];
+          final message = messageData['message'];
           return Align(
             alignment:
                 isUserMessage ? Alignment.centerRight : Alignment.centerLeft,

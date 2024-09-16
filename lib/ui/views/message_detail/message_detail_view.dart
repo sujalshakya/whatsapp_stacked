@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -8,7 +9,6 @@ import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlemedium.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/message_detail_header.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/messages_widget.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/send_message.dart';
-
 import 'message_detail_viewmodel.dart';
 
 @FormView(fields: [
@@ -47,14 +47,14 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
             ),
           ],
         ),
-        title: const Column(
+        title: Column(
           children: [
             Row(
               children: [
-                TextTitleLarge(text: "firstName"),
+                TextTitleLarge(text: firstName),
               ],
             ),
-            Row(
+            const Row(
               children: [TextTitleMedium(text: "Online")],
             ),
           ],
@@ -99,8 +99,13 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
   }
 
   @override
+  void onViewModelReady(MessageDetailViewModel viewModel) =>
+      SchedulerBinding.instance
+          .addPostFrameCallback((timeStamp) => viewModel.fetchMessages());
+
+  @override
   MessageDetailViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      MessageDetailViewModel();
+      MessageDetailViewModel(uid: uid);
 }

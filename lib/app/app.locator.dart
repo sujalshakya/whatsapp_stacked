@@ -13,6 +13,7 @@ import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/dio_service.dart';
+import '../services/fetch_messages_service.dart';
 import '../services/fetch_user_service.dart';
 import '../services/token_storage_service.dart';
 import '../ui/views/login/login_service.dart';
@@ -43,4 +44,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => LoginRepositoryImplementationService());
   locator
       .registerLazySingleton(() => RegisterRepositoryImplementationService());
+  locator.registerLazySingleton(() => FetchMessagesService());
 }

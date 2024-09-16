@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/widgets/from_title.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/form_title.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
 import 'package:whatsapp_stacked/base/common/app_strings.dart';
 import 'package:whatsapp_stacked/base/common/validators.dart';
