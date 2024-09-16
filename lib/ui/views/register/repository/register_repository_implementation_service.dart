@@ -1,5 +1,5 @@
 import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/services/register_service.dart';
+import 'package:whatsapp_stacked/ui/views/register/register_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository.dart';
 
 interface class RegisterRepositoryImplementationService

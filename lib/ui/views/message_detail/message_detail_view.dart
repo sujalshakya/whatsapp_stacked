@@ -15,9 +15,15 @@ import 'message_detail_viewmodel.dart';
   FormTextField(name: 'message'),
 ])
 class MessageDetailView extends StackedView<MessageDetailViewModel> {
-  const MessageDetailView({
-    Key? key,
-  }) : super(key: key);
+  final String firstName;
+  final String uid;
+  final int index;
+  const MessageDetailView(
+      {Key? key,
+      required this.firstName,
+      required this.uid,
+      required this.index})
+      : super(key: key);
 
   @override
   Widget builder(

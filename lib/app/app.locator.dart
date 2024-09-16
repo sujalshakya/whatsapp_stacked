@@ -14,11 +14,11 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/dio_service.dart';
 import '../services/fetch_user_service.dart';
-import '../ui/views/login/repository/login_repository_implementation_service.dart';
-import '../services/login_service.dart';
-import '../ui/views/register/repository/register_repository_implementation_service.dart';
-import '../services/register_service.dart';
 import '../services/token_storage_service.dart';
+import '../ui/views/login/login_service.dart';
+import '../ui/views/login/repository/login_repository_implementation_service.dart';
+import '../ui/views/register/register_service.dart';
+import '../ui/views/register/repository/register_repository_implementation_service.dart';
 
 final locator = StackedLocator.instance;
 

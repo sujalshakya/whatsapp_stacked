@@ -7,6 +7,7 @@ import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.for
 class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   final _firebaseAuth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
+  late String uid;
   List<String> messages = [
     "Hello how are you?",
     "I am fine. What about you?",
@@ -17,12 +18,11 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
     if (messageController.text.isNotEmpty) {
       final message = <String, String>{
         "message": messageController.text,
-        "Send to": "uid"
       };
       db
           .collection("chats")
           .doc(_firebaseAuth.currentUser!.uid)
-          .collection("messages")
+          .collection(uid)
           .doc()
           .set(message)
           .onError((e, _) => debugPrint("Error writing document: $e"));

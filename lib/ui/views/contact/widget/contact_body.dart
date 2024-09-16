@@ -53,9 +53,13 @@ class ContactBody extends StatelessWidget {
             ),
           ],
         ),
-        ChatsWidget(
-          users: vm.users,
-        )
+        vm.isBusy
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ChatsWidget(
+                users: vm.users,
+              )
       ],
     );
   }

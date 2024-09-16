@@ -108,7 +108,7 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
               ontap: () {
                 viewModel.ontap();
               },
-              tap: login),
+              button: login),
         ],
       ),
     );

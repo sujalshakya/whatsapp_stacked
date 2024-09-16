@@ -93,7 +93,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                 ontap: () {
                   viewModel.ontap();
                 },
-                tap: register),
+                button: register),
           ]),
     );
   }

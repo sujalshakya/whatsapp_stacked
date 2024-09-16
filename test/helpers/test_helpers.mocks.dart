@@ -13,13 +13,14 @@ import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 import 'package:whatsapp_stacked/services/dio_service.dart' as _i12;
 import 'package:whatsapp_stacked/services/fetch_user_service.dart' as _i11;
+import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i10;
+import 'package:whatsapp_stacked/ui/views/login/login_service.dart' as _i8;
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart'
     as _i13;
-import 'package:whatsapp_stacked/services/login_service.dart' as _i8;
+import 'package:whatsapp_stacked/ui/views/register/register_service.dart'
+    as _i9;
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart'
     as _i14;
-import 'package:whatsapp_stacked/services/register_service.dart' as _i9;
-import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -821,10 +822,44 @@ class MockDioService extends _i1.Mock implements _i12.DioService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginRepositoryImplementationService extends _i1.Mock
-    implements _i13.LoginRepositoryImplementationService {}
+    implements _i13.LoginRepositoryImplementationService {
+  @override
+  _i6.Future<bool> login(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #login,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
+}
 
 /// A class which mocks [RegisterRepositoryImplementationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRegisterRepositoryImplementationService extends _i1.Mock
-    implements _i14.RegisterRepositoryImplementationService {}
+    implements _i14.RegisterRepositoryImplementationService {
+  @override
+  _i6.Future<bool> register(
+    String? email,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #register,
+          [
+            email,
+            password,
+          ],
+        ),
+        returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
+}

@@ -1,5 +1,5 @@
 import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/services/login_service.dart';
+import 'package:whatsapp_stacked/ui/views/login/login_service.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository.dart';
 
 interface class LoginRepositoryImplementationService

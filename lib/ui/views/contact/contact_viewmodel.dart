@@ -9,10 +9,12 @@ class ContactViewModel extends BaseViewModel {
 
   fetchUsers() async {
     if (fetch == true) {
+      setBusy(true);
       try {
         final fetchedUsers = await _fetchUsers.fetchUsers();
         users = fetchedUsers;
         fetch = false;
+        setBusy(false);
         rebuildUi();
       } catch (error) {
         debugPrint(error.toString());
