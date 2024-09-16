@@ -5,14 +5,14 @@ import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/services/fetch_messages_service.dart';
 import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart';
+import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
 
 class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   final _firebaseAuth = FirebaseAuth.instance;
-  final db = FirebaseFirestore.instance;
   final _messageService = locator<FetchMessagesService>();
   final _otherMessageService = locator<FetchOtherMessagesService>();
-
+  final _firestoreService = locator<FirebaseDatabaseService>();
   final String uid;
   List<Map<String, dynamic>> userMessages = [];
   List<Map<String, dynamic>> otherMessages = [];
@@ -41,7 +41,7 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
         "message": messageController.text,
         "timestamp": DateTime.now()
       };
-      db
+      _firestoreService.db
           .collection("chats")
           .doc(_firebaseAuth.currentUser!.uid)
           .collection(uid)

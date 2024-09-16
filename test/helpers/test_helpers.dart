@@ -11,6 +11,7 @@ import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_impl
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/services/fetch_messages_service.dart';
 import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart';
+import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -31,6 +32,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<FetchMessagesService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchOtherMessagesService>(
       onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<FirebaseDatabaseService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -46,6 +48,7 @@ void registerServices() {
   getAndRegisterRegisterRepositoryImplementationService();
   getAndRegisterFetchMessagesService();
   getAndRegisterFetchOtherMessagesService();
+  getAndRegisterFirebaseDatabaseService();
 // @stacked-mock-register
 }
 
@@ -161,6 +164,13 @@ MockFetchOtherMessagesService getAndRegisterFetchOtherMessagesService() {
   _removeRegistrationIfExists<FetchOtherMessagesService>();
   final service = MockFetchOtherMessagesService();
   locator.registerSingleton<FetchOtherMessagesService>(service);
+  return service;
+}
+
+MockFirebaseDatabaseService getAndRegisterFirebaseDatabaseService() {
+  _removeRegistrationIfExists<FirebaseDatabaseService>();
+  final service = MockFirebaseDatabaseService();
+  locator.registerSingleton<FirebaseDatabaseService>(service);
   return service;
 }
 // @stacked-mock-create

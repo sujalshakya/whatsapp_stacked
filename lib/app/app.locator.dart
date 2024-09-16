@@ -16,6 +16,7 @@ import '../services/dio_service.dart';
 import '../services/fetch_messages_service.dart';
 import '../services/fetch_other_messages_service.dart';
 import '../services/fetch_user_service.dart';
+import '../services/firebase_database_service.dart';
 import '../services/token_storage_service.dart';
 import '../ui/views/login/login_service.dart';
 import '../ui/views/login/repository/login_repository_implementation_service.dart';
@@ -47,4 +48,5 @@ Future<void> setupLocator({
       .registerLazySingleton(() => RegisterRepositoryImplementationService());
   locator.registerLazySingleton(() => FetchMessagesService());
   locator.registerLazySingleton(() => FetchOtherMessagesService());
+  locator.registerLazySingleton(() => FirebaseDatabaseService());
 }
