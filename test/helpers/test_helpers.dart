@@ -9,8 +9,8 @@ import 'package:whatsapp_stacked/services/fetch_user_service.dart';
 import 'package:whatsapp_stacked/services/dio_service.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
-import 'package:whatsapp_stacked/services/fetch_messages_service.dart';
-import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 // @stacked-import
 

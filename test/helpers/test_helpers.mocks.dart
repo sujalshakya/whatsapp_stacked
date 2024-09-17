@@ -12,8 +12,9 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:stacked_services/stacked_services.dart' as _i3;
 import 'package:whatsapp_stacked/services/dio_service.dart' as _i12;
-import 'package:whatsapp_stacked/services/fetch_messages_service.dart' as _i15;
-import 'package:whatsapp_stacked/services/fetch_other_messages_service.dart'
+import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart'
+    as _i15;
+import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart'
     as _i16;
 import 'package:whatsapp_stacked/services/fetch_user_service.dart' as _i11;
 import 'package:whatsapp_stacked/services/firebase_database_service.dart'
@@ -874,7 +875,6 @@ class MockRegisterRepositoryImplementationService extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchMessagesService extends _i1.Mock
     implements _i15.FetchMessagesService {
-  @override
   _i6.Future<List<Map<String, dynamic>>> fetchUsers(String? uid) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -893,7 +893,6 @@ class MockFetchMessagesService extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchOtherMessagesService extends _i1.Mock
     implements _i16.FetchOtherMessagesService {
-  @override
   _i6.Future<List<Map<String, dynamic>>> fetchUsers(String? uid) =>
       (super.noSuchMethod(
         Invocation.method(
