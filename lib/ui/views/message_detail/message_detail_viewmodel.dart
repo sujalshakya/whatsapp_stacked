@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
@@ -17,7 +18,7 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   List<Map<String, dynamic>> userMessages = [];
   List<Map<String, dynamic>> otherMessages = [];
   List<Map<String, dynamic>> allMessages = [];
-
+  late bool sameList;
   MessageDetailViewModel({required this.uid});
 
   void fetchMessages() async {
@@ -33,6 +34,18 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
       Timestamp two = b["timestamp"];
       return two.compareTo(one);
     }));
+    fetchedMessages.sort(((a, b) {
+      Timestamp one = a["timestamp"];
+      Timestamp two = b["timestamp"];
+      return two.compareTo(one);
+    }));
+    fetchMessages.sort(((a, b) {
+      Timestamp one = a["timestamp"];
+      Timestamp two = b["timestamp"];
+      return two.compareTo(one);
+    }));
+    sameList =
+        const DeepCollectionEquality().equals(userMessages, otherMessages);
 
     rebuildUi();
   }

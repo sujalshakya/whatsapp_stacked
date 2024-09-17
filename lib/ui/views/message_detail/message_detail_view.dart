@@ -93,6 +93,7 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
               messages: viewModel.userMessages,
               otherMessages: viewModel.otherMessages,
               allMessages: viewModel.allMessages,
+              sameList: viewModel.sameList,
             ),
 
             /// Add text to list.

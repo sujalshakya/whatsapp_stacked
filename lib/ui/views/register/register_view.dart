@@ -3,7 +3,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/widgets/form_title.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_textfield.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/textfield_title.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
 import 'package:whatsapp_stacked/base/common/app_strings.dart';
 import 'package:whatsapp_stacked/base/common/validators.dart';
@@ -35,13 +36,9 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
           const SizedBox(
             height: 30,
           ),
-          const FormTitle(text: name),
+          const TextFieldTitleText(text: name),
           // Name controller
-          TextFormField(
-            controller: fullNameController,
-            decoration:
-                const InputDecoration(contentPadding: EdgeInsets.all(8)),
-          ),
+          AuthTextField(controller: fullNameController),
           if (viewModel.hasFullNameValidationMessage) ...[
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -51,14 +48,9 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
               ),
             )
           ],
-          const FormTitle(text: email),
-
+          const TextFieldTitleText(text: email),
           // Email controller
-          TextFormField(
-            controller: emailController,
-            decoration:
-                const InputDecoration(contentPadding: EdgeInsets.all(8)),
-          ),
+          AuthTextField(controller: emailController),
           if (viewModel.hasEmailValidationMessage) ...[
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -68,14 +60,9 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
               ),
             )
           ],
-          const FormTitle(text: password),
-
+          const TextFieldTitleText(text: password),
           // Password controller
-          TextFormField(
-            controller: passwordController,
-            decoration:
-                const InputDecoration(contentPadding: EdgeInsets.all(8)),
-          ),
+          AuthTextField(controller: passwordController),
           if (viewModel.hasPasswordValidationMessage) ...[
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -102,7 +89,6 @@ class RegisterView extends StackedView<RegisterViewModel> with $RegisterView {
           ),
 
           /// Line at the bottom which helps navigate to login page.
-
           AuthFooter(
               message: 'Already have an account?  ',
               ontap: () {

@@ -4,7 +4,8 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge_black.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_footer.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/widgets/form_title.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/auth_textfield.dart';
+import 'package:whatsapp_stacked/base/ui_toolkits/widgets/textfield_title.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/logo.dart';
 import 'package:whatsapp_stacked/base/common/app_strings.dart';
 import 'package:whatsapp_stacked/base/common/validators.dart';
@@ -35,13 +36,9 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
             const SizedBox(
               height: 30,
             ),
-            const FormTitle(text: email),
+            const TextFieldTitleText(text: email),
             // Email Textfield
-            TextFormField(
-              controller: emailController,
-              decoration:
-                  const InputDecoration(contentPadding: EdgeInsets.all(8)),
-            ),
+            AuthTextField(controller: emailController),
 
             if (viewModel.hasEmailValidationMessage) ...[
               Padding(
@@ -52,17 +49,11 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                 ),
               )
             ],
-            const FormTitle(text: password),
+            const TextFieldTitleText(text: password),
 
             // Password textfield
-            TextFormField(
-              validator: (value) {
-                return Validators.validateLogin(value);
-              },
-              controller: passwordController,
-              decoration:
-                  const InputDecoration(contentPadding: EdgeInsets.all(8)),
-            ),
+            AuthTextField(controller: passwordController),
+
             if (viewModel.hasPasswordValidationMessage) ...[
               Padding(
                 padding: const EdgeInsets.all(8.0),

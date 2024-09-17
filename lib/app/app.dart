@@ -41,7 +41,6 @@ import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_m
     LazySingleton(classType: TokenStorageService),
     LazySingleton(classType: FetchUserService),
     LazySingleton(classType: SnackbarService),
-
     LazySingleton(classType: DioService),
     LazySingleton(classType: LoginRepositoryImplementationService),
     LazySingleton(classType: RegisterRepositoryImplementationService),

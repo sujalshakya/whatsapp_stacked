@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class FormTitle extends StatelessWidget {
+class TextFieldTitleText extends StatelessWidget {
   /// The text that shows what to input for users.
   /// Requires [text]
-  const FormTitle({
+  const TextFieldTitleText({
     super.key,
     required this.text,
   });
