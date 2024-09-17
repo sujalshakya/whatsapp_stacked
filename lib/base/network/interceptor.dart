@@ -44,8 +44,6 @@ class DioInterceptor extends Interceptor {
   /// Give feedback of type of error to user using snackbar.
   @override
   Future<void> onError(err, handler) async {
-    debugPrint(err.toString());
-    debugPrint(err.toString());
     switch (err.response?.statusCode) {
       case 400:
         _snackbarService.showSnackbar(

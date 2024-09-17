@@ -15,13 +15,18 @@ class LoginViewModel extends FormViewModel with $LoginView {
     if (!hasAnyValidationMessage) {
       final login =
           await _loginrepo.login(emailController.text, passwordController.text);
-      if (login == true) {
+      if (login == "true") {
         _navigationService.replaceWithHomeView();
         _snackbarService.showSnackbar(
           message: "Login Sucessful",
           duration: const Duration(seconds: 1),
         );
-      } else {}
+      } else {
+        _snackbarService.showSnackbar(
+          message: login,
+          duration: const Duration(seconds: 1),
+        );
+      }
     }
   }
 

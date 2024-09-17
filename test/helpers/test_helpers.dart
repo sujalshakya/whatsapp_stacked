@@ -46,12 +46,12 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterLoginService();
-  getAndRegisterRegisterService();
+  // getAndRegisterRegisterService();
   getAndRegisterTokenStorageService();
   getAndRegisterFetchUserService();
   getAndRegisterDioService();
-  getAndRegisterLoginRepositoryImplementationService();
-  getAndRegisterRegisterRepositoryImplementationService();
+  // getAndRegisterLoginRepositoryImplementationService();
+  // getAndRegisterRegisterRepositoryImplementationService();
   getAndRegisterFetchMessagesService();
   getAndRegisterFetchOtherMessagesService();
   getAndRegisterFirebaseDatabaseService();
@@ -117,12 +117,12 @@ MockLoginService getAndRegisterLoginService() {
   return service;
 }
 
-MockRegisterService getAndRegisterRegisterService() {
-  _removeRegistrationIfExists<RegisterService>();
-  final service = MockRegisterService();
-  locator.registerSingleton<RegisterService>(service);
-  return service;
-}
+// MockRegisterService getAndRegisterRegisterService() {
+//   _removeRegistrationIfExists<RegisterService>();
+//   final service = MockRegisterService();
+//   locator.registerSingleton<RegisterService>(service);
+//   return service;
+// }
 
 MockTokenStorageService getAndRegisterTokenStorageService() {
   _removeRegistrationIfExists<TokenStorageService>();
@@ -145,21 +145,21 @@ MockDioService getAndRegisterDioService() {
   return service;
 }
 
-MockLoginRepositoryImplementationService
-    getAndRegisterLoginRepositoryImplementationService() {
-  _removeRegistrationIfExists<LoginRepositoryImplementationService>();
-  final service = MockLoginRepositoryImplementationService();
-  locator.registerSingleton<LoginRepositoryImplementationService>(service);
-  return service;
-}
+// MockLoginRepositoryImplementationService
+//     getAndRegisterLoginRepositoryImplementationService() {
+//   _removeRegistrationIfExists<LoginRepositoryImplementationService>();
+//   final service = MockLoginRepositoryImplementationService();
+//   locator.registerSingleton<LoginRepositoryImplementationService>(service);
+//   return service;
+// }
 
-MockRegisterRepositoryImplementationService
-    getAndRegisterRegisterRepositoryImplementationService() {
-  _removeRegistrationIfExists<RegisterRepositoryImplementationService>();
-  final service = MockRegisterRepositoryImplementationService();
-  locator.registerSingleton<RegisterRepositoryImplementationService>(service);
-  return service;
-}
+// MockRegisterRepositoryImplementationService
+//     getAndRegisterRegisterRepositoryImplementationService() {
+//   _removeRegistrationIfExists<RegisterRepositoryImplementationService>();
+//   final service = MockRegisterRepositoryImplementationService();
+//   locator.registerSingleton<RegisterRepositoryImplementationService>(service);
+//   return service;
+// }
 
 MockFetchMessagesService getAndRegisterFetchMessagesService() {
   _removeRegistrationIfExists<FetchMessagesService>();

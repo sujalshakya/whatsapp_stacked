@@ -1,3 +1,3 @@
 abstract class RegisterRepository {
-  Future<bool> register(String email, String password);
+  Future<String> register(String email, String password);
 }

@@ -16,23 +16,21 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
   final _registerRepo = locator<RegisterRepositoryImplementationService>();
   void registerFirebase() async {
     if (!hasEmailValidationMessage && !hasPasswordValidationMessage) {
-      try {
-        bool register = await _registerRepo.register(
-          emailController.text,
-          passwordController.text,
-        );
-        if (register == true) {
-          addUser();
+      String register = await _registerRepo.register(
+        emailController.text,
+        passwordController.text,
+      );
+      if (register == "true") {
+        addUser();
 
-          _navigationService.replaceWithHomeView();
-          _snackbarService.showSnackbar(
-            message: "Registration Sucessful",
-            duration: const Duration(seconds: 1),
-          );
-        }
-      } on FirebaseAuthException catch (e) {
+        _navigationService.replaceWithHomeView();
         _snackbarService.showSnackbar(
-          message: e.message.toString(),
+          message: "Registration Sucessful",
+          duration: const Duration(seconds: 1),
+        );
+      } else {
+        _snackbarService.showSnackbar(
+          message: register,
           duration: const Duration(seconds: 1),
         );
       }

@@ -22,16 +22,16 @@ import 'package:whatsapp_stacked/services/token_storage_service.dart' as _i11;
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart'
     as _i20;
 import 'package:whatsapp_stacked/ui/views/login/login_service.dart' as _i9;
-import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart'
-    as _i14;
+// import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart'
+//     as _i14;
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart'
     as _i16;
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart'
     as _i17;
-import 'package:whatsapp_stacked/ui/views/register/register_service.dart'
-    as _i10;
-import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart'
-    as _i15;
+// import 'package:whatsapp_stacked/ui/views/register/register_service.dart'
+//     as _i10;
+// import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart'
+//     as _i15;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -738,23 +738,23 @@ class MockLoginService extends _i1.Mock implements _i9.LoginService {
 /// A class which mocks [RegisterService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegisterService extends _i1.Mock implements _i10.RegisterService {
-  @override
-  dynamic registerFirebase(
-    String? email,
-    String? password,
-  ) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #registerFirebase,
-          [
-            email,
-            password,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
-}
+// class MockRegisterService extends _i1.Mock implements _i10.RegisterService {
+//   @override
+//   dynamic registerFirebase(
+//     String? email,
+//     String? password,
+//   ) =>
+//       super.noSuchMethod(
+//         Invocation.method(
+//           #registerFirebase,
+//           [
+//             email,
+//             password,
+//           ],
+//         ),
+//         returnValueForMissingStub: null,
+//       );
+// }
 
 /// A class which mocks [TokenStorageService].
 ///
@@ -843,48 +843,29 @@ class MockDioService extends _i1.Mock implements _i13.DioService {
 /// A class which mocks [LoginRepositoryImplementationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginRepositoryImplementationService extends _i1.Mock
-    implements _i14.LoginRepositoryImplementationService {
-  @override
-  _i7.Future<bool> login(
-    String? email,
-    String? password,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [
-            email,
-            password,
-          ],
-        ),
-        returnValue: _i7.Future<bool>.value(false),
-        returnValueForMissingStub: _i7.Future<bool>.value(false),
-      ) as _i7.Future<bool>);
-}
 
 /// A class which mocks [RegisterRepositoryImplementationService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegisterRepositoryImplementationService extends _i1.Mock
-    implements _i15.RegisterRepositoryImplementationService {
-  @override
-  _i7.Future<bool> register(
-    String? email,
-    String? password,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #register,
-          [
-            email,
-            password,
-          ],
-        ),
-        returnValue: _i7.Future<bool>.value(false),
-        returnValueForMissingStub: _i7.Future<bool>.value(false),
-      ) as _i7.Future<bool>);
-}
+// class MockRegisterRepositoryImplementationService extends _i1.Mock
+//     implements _i15.RegisterRepositoryImplementationService {
+//   @override
+//   _i7.Future<bool> register(
+//     String? email,
+//     String? password,
+//   ) =>
+//       (super.noSuchMethod(
+//         Invocation.method(
+//           #register,
+//           [
+//             email,
+//             password,
+//           ],
+//         ),
+//         returnValue: _i7.Future<bool>.value(false),
+//         returnValueForMissingStub: _i7.Future<bool>.value(false),
+//       ) as _i7.Future<bool>);
+// }
 
 /// A class which mocks [FetchMessagesService].
 ///

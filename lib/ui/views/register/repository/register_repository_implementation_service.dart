@@ -6,11 +6,11 @@ interface class RegisterRepositoryImplementationService
     implements RegisterRepository {
   final _registerservice = locator<RegisterService>();
   @override
-  Future<bool> register(String email, String password) async {
+  Future<String> register(String email, String password) async {
     try {
       return await _registerservice.registerFirebase(email, password);
     } catch (e) {
-      return false;
+      return e.toString();
     }
   }
 }
