@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_stacked/base/models/user.dart';
 
 import 'package:whatsapp_stacked/base/ui_toolkits/widgets/message.dart';
 
@@ -14,7 +15,7 @@ class ChatsWidget extends StatelessWidget {
   });
 
   /// List of user data.
-  final List<dynamic> users;
+  final List<User> users;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,8 @@ class ChatsWidget extends StatelessWidget {
           final user = users[index];
           return MessageWidget(
             index: index,
-            uid: user['Uid'],
-            firstName: user['name'],
+            uid: user.uid!,
+            firstName: user.name!,
           );
         });
   }

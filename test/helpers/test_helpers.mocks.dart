@@ -13,7 +13,6 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
 import 'package:stacked_services/stacked_services.dart' as _i4;
 import 'package:whatsapp_stacked/services/dio_service.dart' as _i13;
-import 'package:whatsapp_stacked/services/fetch_user_service.dart' as _i12;
 import 'package:whatsapp_stacked/services/firebase_database_service.dart'
     as _i18;
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart'
@@ -24,10 +23,10 @@ import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_m
 import 'package:whatsapp_stacked/ui/views/login/login_service.dart' as _i9;
 // import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart'
 //     as _i14;
-import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart'
-    as _i16;
-import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart'
-    as _i17;
+// import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart'
+//     as _i16;
+// import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart'
+//     as _i17;
 // import 'package:whatsapp_stacked/ui/views/register/register_service.dart'
 //     as _i10;
 // import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart'
@@ -799,19 +798,19 @@ class MockTokenStorageService extends _i1.Mock
 /// A class which mocks [FetchUserService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchUserService extends _i1.Mock implements _i12.FetchUserService {
-  @override
-  _i7.Future<List<Map<String, dynamic>>> fetchUsers() => (super.noSuchMethod(
-        Invocation.method(
-          #fetchUsers,
-          [],
-        ),
-        returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-        returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-      ) as _i7.Future<List<Map<String, dynamic>>>);
-}
+// class MockFetchUserService extends _i1.Mock implements _i12.FetchUserService {
+//   @override
+//   _i7.Future<List<Map<String, dynamic>>> fetchUsers() => (super.noSuchMethod(
+//         Invocation.method(
+//           #fetchUsers,
+//           [],
+//         ),
+//         returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//         returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//       ) as _i7.Future<List<Map<String, dynamic>>>);
+// }
 
 /// A class which mocks [DioService].
 ///
@@ -870,40 +869,40 @@ class MockDioService extends _i1.Mock implements _i13.DioService {
 /// A class which mocks [FetchMessagesService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchMessagesService extends _i1.Mock
-    implements _i16.FetchMessagesService {
-  @override
-  _i7.Future<List<Map<String, dynamic>>> fetchMessages(String? uid) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #fetchMessages,
-          [uid],
-        ),
-        returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-        returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-      ) as _i7.Future<List<Map<String, dynamic>>>);
-}
+// class MockFetchMessagesService extends _i1.Mock
+//     implements _i16.FetchMessagesService {
+//   @override
+//   _i7.Future<List<Map<String, dynamic>>> fetchMessages(String? uid) =>
+//       (super.noSuchMethod(
+//         Invocation.method(
+//           #fetchMessages,
+//           [uid],
+//         ),
+//         returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//         returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//       ) as _i7.Future<List<Map<String, dynamic>>>);
+// }
 
 /// A class which mocks [FetchOtherMessagesService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchOtherMessagesService extends _i1.Mock
-    implements _i17.FetchOtherMessagesService {
-  @override
-  _i7.Future<List<Map<String, dynamic>>> fetchMessages(String? uid) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #fetchMessages,
-          [uid],
-        ),
-        returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-        returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
-            <Map<String, dynamic>>[]),
-      ) as _i7.Future<List<Map<String, dynamic>>>);
-}
+// class MockFetchOtherMessagesService extends _i1.Mock
+//     implements _i17.FetchOtherMessagesService {
+//   @override
+//   _i7.Future<List<Map<String, dynamic>>> fetchMessages(String? uid) =>
+//       (super.noSuchMethod(
+//         Invocation.method(
+//           #fetchMessages,
+//           [uid],
+//         ),
+//         returnValue: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//         returnValueForMissingStub: _i7.Future<List<Map<String, dynamic>>>.value(
+//             <Map<String, dynamic>>[]),
+//       ) as _i7.Future<List<Map<String, dynamic>>>);
+// }
 
 /// A class which mocks [FirebaseDatabaseService].
 ///

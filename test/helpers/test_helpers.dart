@@ -48,12 +48,12 @@ void registerServices() {
   getAndRegisterLoginService();
   // getAndRegisterRegisterService();
   getAndRegisterTokenStorageService();
-  getAndRegisterFetchUserService();
+  // getAndRegisterFetchUserService();
   getAndRegisterDioService();
   // getAndRegisterLoginRepositoryImplementationService();
   // getAndRegisterRegisterRepositoryImplementationService();
-  getAndRegisterFetchMessagesService();
-  getAndRegisterFetchOtherMessagesService();
+  // getAndRegisterFetchMessagesService();
+  // getAndRegisterFetchOtherMessagesService();
   getAndRegisterFirebaseDatabaseService();
   getAndRegisterOtherMessagesRepositoryImpService();
   getAndRegisterUserMessagesRepositoryImpService();
@@ -131,12 +131,12 @@ MockTokenStorageService getAndRegisterTokenStorageService() {
   return service;
 }
 
-MockFetchUserService getAndRegisterFetchUserService() {
-  _removeRegistrationIfExists<FetchUserService>();
-  final service = MockFetchUserService();
-  locator.registerSingleton<FetchUserService>(service);
-  return service;
-}
+// MockFetchUserService getAndRegisterFetchUserService() {
+//   _removeRegistrationIfExists<FetchUserService>();
+//   final service = MockFetchUserService();
+//   locator.registerSingleton<FetchUserService>(service);
+//   return service;
+// }
 
 MockDioService getAndRegisterDioService() {
   _removeRegistrationIfExists<DioService>();
@@ -161,19 +161,19 @@ MockDioService getAndRegisterDioService() {
 //   return service;
 // }
 
-MockFetchMessagesService getAndRegisterFetchMessagesService() {
-  _removeRegistrationIfExists<FetchMessagesService>();
-  final service = MockFetchMessagesService();
-  locator.registerSingleton<FetchMessagesService>(service);
-  return service;
-}
+// MockFetchMessagesService getAndRegisterFetchMessagesService() {
+//   _removeRegistrationIfExists<FetchMessagesService>();
+//   final service = MockFetchMessagesService();
+//   locator.registerSingleton<FetchMessagesService>(service);
+//   return service;
+// }
 
-MockFetchOtherMessagesService getAndRegisterFetchOtherMessagesService() {
-  _removeRegistrationIfExists<FetchOtherMessagesService>();
-  final service = MockFetchOtherMessagesService();
-  locator.registerSingleton<FetchOtherMessagesService>(service);
-  return service;
-}
+// MockFetchOtherMessagesService getAndRegisterFetchOtherMessagesService() {
+//   _removeRegistrationIfExists<FetchOtherMessagesService>();
+//   final service = MockFetchOtherMessagesService();
+//   locator.registerSingleton<FetchOtherMessagesService>(service);
+//   return service;
+// }
 
 MockFirebaseDatabaseService getAndRegisterFirebaseDatabaseService() {
   _removeRegistrationIfExists<FirebaseDatabaseService>();

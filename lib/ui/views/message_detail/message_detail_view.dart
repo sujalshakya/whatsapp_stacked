@@ -89,12 +89,7 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
 
             /// Display list of messages.
 
-            MessagesWidget(
-              messages: viewModel.userMessages,
-              otherMessages: viewModel.otherMessages,
-              allMessages: viewModel.allMessages,
-              sameList: viewModel.sameList,
-            ),
+            MessagesWidget(vm: viewModel),
 
             /// Add text to list.
             SendMessage(vm: viewModel),

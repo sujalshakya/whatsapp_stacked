@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/models/messages.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
@@ -15,38 +15,41 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   final _otherMessageRepository = locator<OtherMessagesRepositoryImpService>();
   final _firestoreService = locator<FirebaseDatabaseService>();
   final String uid;
-  List<Map<String, dynamic>> userMessages = [];
-  List<Map<String, dynamic>> otherMessages = [];
-  List<Map<String, dynamic>> allMessages = [];
-  late bool sameList;
+  List<Messages> userMessages = [];
+  List<Messages> otherMessages = [];
+  List<Messages> allMessages = [];
+  bool sameList = false;
   MessageDetailViewModel({required this.uid});
 
   void fetchMessages() async {
+    setBusy(true);
     final fetchedMessages =
         await _messageRepository.fetchMessagesThroughRepo(uid);
     userMessages = fetchedMessages;
     final fetchMessages =
         await _otherMessageRepository.fetchMessagesThroughRepo(uid);
     otherMessages = fetchMessages;
-    allMessages = userMessages + otherMessages;
-    allMessages.sort(((a, b) {
-      Timestamp one = a["timestamp"];
-      Timestamp two = b["timestamp"];
-      return two.compareTo(one);
-    }));
+
     fetchedMessages.sort(((a, b) {
-      Timestamp one = a["timestamp"];
-      Timestamp two = b["timestamp"];
-      return two.compareTo(one);
+      Timestamp? one = a.timestamp;
+      Timestamp? two = b.timestamp;
+      return two!.compareTo(one!);
     }));
     fetchMessages.sort(((a, b) {
-      Timestamp one = a["timestamp"];
-      Timestamp two = b["timestamp"];
-      return two.compareTo(one);
+      Timestamp? one = a.timestamp;
+      Timestamp? two = b.timestamp;
+      return two!.compareTo(one!);
     }));
-    sameList =
-        const DeepCollectionEquality().equals(userMessages, otherMessages);
+    allMessages = userMessages + otherMessages;
+    allMessages.sort(((a, b) {
+      Timestamp? one = a.timestamp;
+      Timestamp? two = b.timestamp;
+      return two!.compareTo(one!);
+    }));
+    sameList = listEquals<Messages>(userMessages, otherMessages);
 
+    debugPrint(sameList.toString());
+    setBusy(false);
     rebuildUi();
   }
 

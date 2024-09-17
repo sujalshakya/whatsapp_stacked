@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:stacked/stacked.dart';
+import 'package:whatsapp_stacked/base/models/user.dart';
 import 'package:whatsapp_stacked/services/fetch_user_service.dart';
 
 class HomeViewModel extends BaseViewModel {
-  dynamic users;
+  List<User> users = [];
   final _fetchUsers = FetchUserService();
   bool fetch = true;
 
