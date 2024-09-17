@@ -3,15 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
-import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
 
 class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   final _firebaseAuth = FirebaseAuth.instance;
-  final _messageService = locator<FetchMessagesService>();
-  final _otherMessageService = locator<FetchOtherMessagesService>();
+  final _messageRepository = locator<UserMessagesRepositoryImpService>();
+  final _otherMessageRepository = locator<OtherMessagesRepositoryImpService>();
   final _firestoreService = locator<FirebaseDatabaseService>();
   final String uid;
   List<Map<String, dynamic>> userMessages = [];
@@ -21,9 +21,11 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   MessageDetailViewModel({required this.uid});
 
   void fetchMessages() async {
-    final fetchedMessages = await _messageService.fetchMessages(uid);
+    final fetchedMessages =
+        await _messageRepository.fetchMessagesThroughRepo(uid);
     userMessages = fetchedMessages;
-    final fetchMessages = await _otherMessageService.fetchMessages(uid);
+    final fetchMessages =
+        await _otherMessageRepository.fetchMessagesThroughRepo(uid);
     otherMessages = fetchMessages;
     allMessages = userMessages + otherMessages;
     allMessages.sort(((a, b) {

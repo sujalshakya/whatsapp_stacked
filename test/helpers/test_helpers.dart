@@ -12,6 +12,8 @@ import 'package:whatsapp_stacked/ui/views/register/repository/register_repositor
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -33,6 +35,10 @@ import 'test_helpers.mocks.dart';
   MockSpec<FetchOtherMessagesService>(
       onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FirebaseDatabaseService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<OtherMessagesRepositoryImpService>(
+      onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<UserMessagesRepositoryImpService>(
+      onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -49,6 +55,8 @@ void registerServices() {
   getAndRegisterFetchMessagesService();
   getAndRegisterFetchOtherMessagesService();
   getAndRegisterFirebaseDatabaseService();
+  getAndRegisterOtherMessagesRepositoryImpService();
+  getAndRegisterUserMessagesRepositoryImpService();
 // @stacked-mock-register
 }
 
@@ -171,6 +179,22 @@ MockFirebaseDatabaseService getAndRegisterFirebaseDatabaseService() {
   _removeRegistrationIfExists<FirebaseDatabaseService>();
   final service = MockFirebaseDatabaseService();
   locator.registerSingleton<FirebaseDatabaseService>(service);
+  return service;
+}
+
+MockOtherMessagesRepositoryImpService
+    getAndRegisterOtherMessagesRepositoryImpService() {
+  _removeRegistrationIfExists<OtherMessagesRepositoryImpService>();
+  final service = MockOtherMessagesRepositoryImpService();
+  locator.registerSingleton<OtherMessagesRepositoryImpService>(service);
+  return service;
+}
+
+MockUserMessagesRepositoryImpService
+    getAndRegisterUserMessagesRepositoryImpService() {
+  _removeRegistrationIfExists<UserMessagesRepositoryImpService>();
+  final service = MockUserMessagesRepositoryImpService();
+  locator.registerSingleton<UserMessagesRepositoryImpService>(service);
   return service;
 }
 // @stacked-mock-create

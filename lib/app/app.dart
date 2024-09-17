@@ -18,6 +18,8 @@ import 'package:whatsapp_stacked/ui/views/register/repository/register_repositor
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_messages_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
+import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -46,6 +48,8 @@ import 'package:whatsapp_stacked/services/firebase_database_service.dart';
     LazySingleton(classType: FetchMessagesService),
     LazySingleton(classType: FetchOtherMessagesService),
     LazySingleton(classType: FirebaseDatabaseService),
+    LazySingleton(classType: OtherMessagesRepositoryImpService),
+    LazySingleton(classType: UserMessagesRepositoryImpService),
 // @stacked-service
   ],
   bottomsheets: [
