@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labellarge.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/text/text_labelsmall.dart';
 
 /// An individual chat box.
 class MessageWidget extends StatelessWidget {
@@ -51,7 +49,11 @@ class MessageWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      LabelLarge(text: firstName),
+                      Text(
+                        firstName,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface),
+                      )
                     ],
                   ),
                   const Text("Message")
@@ -73,10 +75,17 @@ class MessageWidget extends StatelessWidget {
                     height: 25,
 
                     // Static number of messages.
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(10, 4, 0, 0),
-                      child: TextLabelSmall(text: "3"),
-                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 4, 0, 0),
+                        child: Text(
+                          "3",
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface),
+                        )),
                   ),
                 ),
               ],

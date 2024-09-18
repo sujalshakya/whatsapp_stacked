@@ -12,10 +12,11 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import '../services/fetch_user_service.dart';
+import '../ui/views/home/repository/fetch_users_repository_imp_service.dart';
 import '../services/firebase_auth_service.dart';
 import '../services/firebase_database_service.dart';
 import '../services/token_storage_service.dart';
+import '../ui/views/home/service/fetch_user_service.dart';
 import '../ui/views/login/login_service.dart';
 import '../ui/views/login/repository/login_repository_implementation_service.dart';
 import '../ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
@@ -53,4 +54,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => OtherMessagesRepositoryImpService());
   locator.registerLazySingleton(() => UserMessagesRepositoryImpService());
   locator.registerLazySingleton(() => FirebaseAuthService());
+  locator.registerLazySingleton(() => FetchUsersRepositoryImpService());
 }

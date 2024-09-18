@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:stacked/stacked.dart';
+import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/base/models/user.dart';
-import 'package:whatsapp_stacked/services/fetch_user_service.dart';
+import 'package:whatsapp_stacked/ui/views/home/repository/fetch_users_repository_imp_service.dart';
 
 class HomeViewModel extends BaseViewModel {
   List<User> users = [];
-  final _fetchUsers = FetchUserService();
+  final _fetchUsers = locator<FetchUsersRepositoryImpService>();
   bool fetch = true;
 
   fetchUsers() async {

@@ -5,7 +5,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:whatsapp_stacked/base/theme_provider.dart';
 import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlelarge.dart';
-import 'package:whatsapp_stacked/base/ui_toolkits/text/text_titlemedium.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/messages_widget.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/widgets/send_message.dart';
 import 'message_detail_viewmodel.dart';
@@ -53,8 +52,12 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
                 TextTitleLarge(text: firstName),
               ],
             ),
-            const Row(
-              children: [TextTitleMedium(text: "Online")],
+            Row(
+              children: [
+                Text("Online",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.surface))
+              ],
             ),
           ],
         ),
