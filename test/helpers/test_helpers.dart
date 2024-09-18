@@ -6,7 +6,6 @@ import 'package:whatsapp_stacked/ui/views/login/login_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_service.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'package:whatsapp_stacked/services/fetch_user_service.dart';
-import 'package:whatsapp_stacked/services/dio_service.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
@@ -26,7 +25,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<RegisterService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<TokenStorageService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<FetchUserService>(onMissingStub: OnMissingStub.returnDefault),
-  MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
+  // MockSpec<DioService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<LoginRepositoryImplementationService>(
       onMissingStub: OnMissingStub.returnDefault),
   MockSpec<RegisterRepositoryImplementationService>(
@@ -49,7 +48,7 @@ void registerServices() {
   // getAndRegisterRegisterService();
   getAndRegisterTokenStorageService();
   // getAndRegisterFetchUserService();
-  getAndRegisterDioService();
+  // getAndRegisterDioService();
   // getAndRegisterLoginRepositoryImplementationService();
   // getAndRegisterRegisterRepositoryImplementationService();
   // getAndRegisterFetchMessagesService();
@@ -138,12 +137,12 @@ MockTokenStorageService getAndRegisterTokenStorageService() {
 //   return service;
 // }
 
-MockDioService getAndRegisterDioService() {
-  _removeRegistrationIfExists<DioService>();
-  final service = MockDioService();
-  locator.registerSingleton<DioService>(service);
-  return service;
-}
+// MockDioService getAndRegisterDioService() {
+//   _removeRegistrationIfExists<DioService>();
+//   final service = MockDioService();
+//   locator.registerSingleton<DioService>(service);
+//   return service;
+// }
 
 // MockLoginRepositoryImplementationService
 //     getAndRegisterLoginRepositoryImplementationService() {

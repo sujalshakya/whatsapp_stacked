@@ -30,7 +30,7 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         _navigationService.navigateToMessageDetailView(
             firstName: firstName, index: index, uid: uid);

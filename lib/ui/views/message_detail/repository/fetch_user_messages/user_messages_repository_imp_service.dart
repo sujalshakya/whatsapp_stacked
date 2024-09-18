@@ -5,10 +5,9 @@ import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_
 
 class UserMessagesRepositoryImpService implements FetchMessagesRepository {
   final _fetchMessages = locator<FetchMessagesService>();
-  List<Messages> usermessageList = [];
 
   @override
   Future<List<Messages>> fetchMessagesThroughRepo(uid) async {
-    return usermessageList = await _fetchMessages.fetchMessages(uid);
+    return await _fetchMessages.fetchMessages(uid);
   }
 }

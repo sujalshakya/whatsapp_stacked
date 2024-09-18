@@ -3,6 +3,7 @@ import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_viewmode
 
 /// Shows messages alternatingly in different colored containers.
 
+// ignore: must_be_immutable
 class MessagesWidget extends StatelessWidget {
   /// Requires [messages].
   /// The odd indexed message in [messages] which signifies message
@@ -14,7 +15,7 @@ class MessagesWidget extends StatelessWidget {
     required this.vm,
   });
 
-  /// List of texts added by the user
+  /// viewmodel of view
   MessageDetailViewModel vm;
   @override
   Widget build(BuildContext context) {

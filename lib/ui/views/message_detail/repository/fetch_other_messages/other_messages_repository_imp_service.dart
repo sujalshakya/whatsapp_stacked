@@ -6,10 +6,13 @@ import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_other_mes
 class OtherMessagesRepositoryImpService
     implements FetchOtherMessagesRepository {
   final _fetchMessages = locator<FetchOtherMessagesService>();
-  List<Messages> usermessageList = [];
 
   @override
   Future<List<Messages>> fetchMessagesThroughRepo(uid) async {
-    return usermessageList = await _fetchMessages.fetchMessages(uid);
+    try {
+      return await _fetchMessages.fetchMessages(uid);
+    } catch (e) {
+      throw e.toString();
+    }
   }
 }

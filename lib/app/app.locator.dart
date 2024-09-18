@@ -12,7 +12,6 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import '../services/dio_service.dart';
 import '../services/fetch_user_service.dart';
 import '../services/firebase_database_service.dart';
 import '../ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
@@ -44,7 +43,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => TokenStorageService());
   locator.registerLazySingleton(() => FetchUserService());
   locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => DioService());
   locator.registerLazySingleton(() => LoginRepositoryImplementationService());
   locator
       .registerLazySingleton(() => RegisterRepositoryImplementationService());

@@ -12,7 +12,6 @@ import 'package:whatsapp_stacked/ui/views/register/register_view.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.dart';
 import 'package:whatsapp_stacked/services/token_storage_service.dart';
 import 'package:whatsapp_stacked/services/fetch_user_service.dart';
-import 'package:whatsapp_stacked/services/dio_service.dart';
 import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
@@ -41,7 +40,6 @@ import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_m
     LazySingleton(classType: TokenStorageService),
     LazySingleton(classType: FetchUserService),
     LazySingleton(classType: SnackbarService),
-    LazySingleton(classType: DioService),
     LazySingleton(classType: LoginRepositoryImplementationService),
     LazySingleton(classType: RegisterRepositoryImplementationService),
     LazySingleton(classType: FetchMessagesService),

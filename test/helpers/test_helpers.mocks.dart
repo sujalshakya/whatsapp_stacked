@@ -12,7 +12,6 @@ import 'package:flutter/material.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
 import 'package:stacked_services/stacked_services.dart' as _i4;
-import 'package:whatsapp_stacked/services/dio_service.dart' as _i13;
 import 'package:whatsapp_stacked/services/firebase_database_service.dart'
     as _i18;
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart'
@@ -45,6 +44,7 @@ import 'package:whatsapp_stacked/ui/views/login/login_service.dart' as _i9;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+// ignore: unused_element
 class _FakeDio_0 extends _i1.SmartFake implements _i2.Dio {
   _FakeDio_0(
     Object parent,
@@ -815,29 +815,29 @@ class MockTokenStorageService extends _i1.Mock
 /// A class which mocks [DioService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDioService extends _i1.Mock implements _i13.DioService {
-  @override
-  _i2.Dio get dio => (super.noSuchMethod(
-        Invocation.getter(#dio),
-        returnValue: _FakeDio_0(
-          this,
-          Invocation.getter(#dio),
-        ),
-        returnValueForMissingStub: _FakeDio_0(
-          this,
-          Invocation.getter(#dio),
-        ),
-      ) as _i2.Dio);
+// class MockDioService extends _i1.Mock implements _i13.DioService {
+//   @override
+//   _i2.Dio get dio => (super.noSuchMethod(
+//         Invocation.getter(#dio),
+//         returnValue: _FakeDio_0(
+//           this,
+//           Invocation.getter(#dio),
+//         ),
+//         returnValueForMissingStub: _FakeDio_0(
+//           this,
+//           Invocation.getter(#dio),
+//         ),
+//       ) as _i2.Dio);
 
-  @override
-  set dio(_i2.Dio? _dio) => super.noSuchMethod(
-        Invocation.setter(
-          #dio,
-          _dio,
-        ),
-        returnValueForMissingStub: null,
-      );
-}
+//   @override
+//   set dio(_i2.Dio? _dio) => super.noSuchMethod(
+//         Invocation.setter(
+//           #dio,
+//           _dio,
+//         ),
+//         returnValueForMissingStub: null,
+//       );
+// }
 
 /// A class which mocks [LoginRepositoryImplementationService].
 ///

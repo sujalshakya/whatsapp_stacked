@@ -26,6 +26,7 @@ class FetchOtherMessagesService {
       }
     } catch (e) {
       debugPrint("Error completing: $e");
+      rethrow;
     }
     return othermessageList;
   }

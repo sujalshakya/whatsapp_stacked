@@ -7,9 +7,7 @@ class LoginRepositoryImplementationService implements LoginRepository {
   @override
   Future<String> login(String email, String password) async {
     try {
-      String response = await _loginservice.loginFirebase(email, password);
-
-      return response;
+      return await _loginservice.loginFirebase(email, password);
     } catch (e) {
       return e.toString();
     }

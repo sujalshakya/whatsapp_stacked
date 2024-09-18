@@ -85,8 +85,6 @@ class MessageDetailView extends StackedView<MessageDetailViewModel> {
         decoration: BoxDecoration(color: Theme.of(context).colorScheme.onError),
         child: Column(
           children: [
-            // const MessageDetailHeader(),
-
             /// Display list of messages.
 
             MessagesWidget(vm: viewModel),
