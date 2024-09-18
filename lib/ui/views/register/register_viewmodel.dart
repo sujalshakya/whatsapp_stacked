@@ -3,6 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/base/models/user.dart';
 import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
@@ -13,7 +14,8 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
   final _snackbarService = locator<SnackbarService>();
   final _firebaseAuth = locator<FirebaseAuthService>();
   final _firestoreService = locator<FirebaseDatabaseService>();
-  final _registerRepo = locator<RegisterRepositoryImplementationService>();
+  final _registerRepo = locator<RegisterRepositoryImp>();
+
   void registerFirebase() async {
     if (!hasEmailValidationMessage && !hasPasswordValidationMessage) {
       String register = await _registerRepo.register(
@@ -37,22 +39,24 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
     }
   }
 
+  /// Store user information to firestore.
   void addUser() {
-    final user = <String, String>{
-      "email": emailController.text,
-      "Uid": _firebaseAuth.firebaseAuth.currentUser!.uid,
-      "name": fullNameController.text
-    };
+    final User user = User(
+        email: emailController.text,
+        uid: _firebaseAuth.firebaseAuth.currentUser!.uid,
+        name: fullNameController.text);
+
     _firebaseAuth.firebaseAuth.currentUser!
         .updateDisplayName(fullNameController.text);
 
     _firestoreService.db
         .collection("users")
         .doc()
-        .set(user)
+        .set(user.toJson())
         .onError((e, _) => debugPrint("Error writing document: $e"));
   }
 
+  /// Navigate to login view.
   void ontap() {
     _navigationService.replaceWithLoginView();
   }

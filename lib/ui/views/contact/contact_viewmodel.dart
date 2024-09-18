@@ -6,7 +6,7 @@ import 'package:whatsapp_stacked/ui/views/home/repository/fetch_users_repository
 
 class ContactViewModel extends BaseViewModel {
   List<User> users = [];
-  final _fetchUsers = locator<FetchUsersRepositoryImpService>();
+  final _fetchUsers = locator<FetchUsersRepositoryImp>();
   bool fetch = true;
 
   fetchUsers() async {

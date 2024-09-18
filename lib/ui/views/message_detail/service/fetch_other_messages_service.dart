@@ -17,6 +17,7 @@ class FetchOtherMessagesService {
           .collection("chats")
           .doc(uid)
           .collection(_firebaseAuth.firebaseAuth.currentUser!.uid)
+          .orderBy("timestamp", descending: true)
           .get();
 
       for (var docSnapshot in querySnapshot.docs) {

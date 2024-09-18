@@ -45,14 +45,13 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => TokenStorageService());
   locator.registerLazySingleton(() => FetchUserService());
   locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => LoginRepositoryImplementationService());
-  locator
-      .registerLazySingleton(() => RegisterRepositoryImplementationService());
+  locator.registerLazySingleton(() => LoginRepositoryImp());
+  locator.registerLazySingleton(() => RegisterRepositoryImp());
   locator.registerLazySingleton(() => FetchMessagesService());
   locator.registerLazySingleton(() => FetchOtherMessagesService());
   locator.registerLazySingleton(() => FirebaseDatabaseService());
-  locator.registerLazySingleton(() => OtherMessagesRepositoryImpService());
-  locator.registerLazySingleton(() => UserMessagesRepositoryImpService());
+  locator.registerLazySingleton(() => OtherMessagesRepositoryImp());
+  locator.registerLazySingleton(() => UserMessagesRepositoryImp());
   locator.registerLazySingleton(() => FirebaseAuthService());
-  locator.registerLazySingleton(() => FetchUsersRepositoryImpService());
+  locator.registerLazySingleton(() => FetchUsersRepositoryImp());
 }

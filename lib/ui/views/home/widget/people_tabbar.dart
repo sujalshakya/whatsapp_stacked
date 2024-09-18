@@ -20,10 +20,7 @@ class PeopleTabBar extends StatelessWidget {
           )
         : Column(
             children: [
-              SizedBox(height: 450, child: ChatsWidget(users: vm.users)),
-              const SizedBox(
-                height: 30,
-              ),
+              SizedBox(height: 440, child: ChatsWidget(users: vm.users)),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
@@ -52,6 +49,7 @@ class PeopleTabBar extends StatelessWidget {
                   ],
                 ),
               ),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

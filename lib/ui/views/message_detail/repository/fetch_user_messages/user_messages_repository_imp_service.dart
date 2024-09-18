@@ -3,7 +3,7 @@ import 'package:whatsapp_stacked/ui/views/message_detail/models/messages.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/fetch_messages_repository.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/service/fetch_messages_service.dart';
 
-class UserMessagesRepositoryImpService implements FetchMessagesRepository {
+class UserMessagesRepositoryImp implements FetchMessagesRepository {
   final _fetchMessages = locator<FetchMessagesService>();
 
   @override

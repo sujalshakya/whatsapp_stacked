@@ -4,7 +4,7 @@ import 'package:whatsapp_stacked/ui/views/home/service/fetch_user_service.dart';
 
 final _usersService = locator<FetchUserService>();
 
-class FetchUsersRepositoryImpService {
+class FetchUsersRepositoryImp {
   Future<List<User>> fetchUsers() async {
     return await _usersService.fetchUsers();
   }

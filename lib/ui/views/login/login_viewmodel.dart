@@ -9,7 +9,7 @@ import 'package:whatsapp_stacked/ui/views/login/repository/login_repository_impl
 class LoginViewModel extends FormViewModel with $LoginView {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
-  final _loginrepo = locator<LoginRepositoryImplementationService>();
+  final _loginrepo = locator<LoginRepositoryImp>();
 
   void loginFirebase() async {
     if (!hasAnyValidationMessage) {

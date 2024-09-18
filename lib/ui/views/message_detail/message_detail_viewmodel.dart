@@ -11,13 +11,15 @@ import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.for
 
 class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
   final _firebaseAuth = locator<FirebaseAuthService>();
-  final _messageRepository = locator<UserMessagesRepositoryImpService>();
-  final _otherMessageRepository = locator<OtherMessagesRepositoryImpService>();
+  final _messageRepository = locator<UserMessagesRepositoryImp>();
+  final _otherMessageRepository = locator<OtherMessagesRepositoryImp>();
   final _firestoreService = locator<FirebaseDatabaseService>();
   final String uid;
   List<Messages> userMessages = [];
   List<Messages> otherMessages = [];
   List<Messages> allMessages = [];
+
+  /// Initialize as false.
   bool sameList = false;
   MessageDetailViewModel({required this.uid});
 
@@ -30,16 +32,6 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
         await _otherMessageRepository.fetchMessagesThroughRepo(uid);
     otherMessages = fetchMessages;
 
-    fetchedMessages.sort(((a, b) {
-      Timestamp? one = a.timestamp;
-      Timestamp? two = b.timestamp;
-      return two!.compareTo(one!);
-    }));
-    fetchMessages.sort(((a, b) {
-      Timestamp? one = a.timestamp;
-      Timestamp? two = b.timestamp;
-      return two!.compareTo(one!);
-    }));
     allMessages = userMessages + otherMessages;
     allMessages.sort(((a, b) {
       Timestamp? one = a.timestamp;
@@ -53,6 +45,7 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
     rebuildUi();
   }
 
+  /// Store message in firestore.
   void addMessage() {
     if (messageController.text.isNotEmpty) {
       final message = <String, dynamic>{
