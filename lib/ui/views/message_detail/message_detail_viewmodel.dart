@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
+import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/models/messages.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
@@ -10,7 +10,7 @@ import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
 
 class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
-  final _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = locator<FirebaseAuthService>();
   final _messageRepository = locator<UserMessagesRepositoryImpService>();
   final _otherMessageRepository = locator<OtherMessagesRepositoryImpService>();
   final _firestoreService = locator<FirebaseDatabaseService>();
@@ -61,7 +61,7 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
       };
       _firestoreService.db
           .collection("chats")
-          .doc(_firebaseAuth.currentUser!.uid)
+          .doc(_firebaseAuth.firebaseAuth.currentUser!.uid)
           .collection(uid)
           .doc()
           .set(message)

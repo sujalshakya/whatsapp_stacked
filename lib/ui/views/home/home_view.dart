@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -7,12 +6,13 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/theme_provider.dart';
+import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
 import 'package:whatsapp_stacked/ui/views/home/widget/people_tabbar.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
   HomeView({Key? key}) : super(key: key);
-  final _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = locator<FirebaseAuthService>();
   final _navigationService = locator<NavigationService>();
 
   @override
@@ -54,7 +54,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () async {
-                    _firebaseAuth.signOut();
+                    _firebaseAuth.firebaseAuth.signOut();
                     _navigationService.replaceWithLoginView();
                   },
                   child: Icon(

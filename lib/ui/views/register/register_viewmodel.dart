@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
+import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
 import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
@@ -11,7 +11,7 @@ import 'package:whatsapp_stacked/ui/views/register/repository/register_repositor
 class RegisterViewModel extends FormViewModel with $RegisterView {
   final _navigationService = locator<NavigationService>();
   final _snackbarService = locator<SnackbarService>();
-  final _firebaseAuth = FirebaseAuth.instance;
+  final _firebaseAuth = locator<FirebaseAuthService>();
   final _firestoreService = locator<FirebaseDatabaseService>();
   final _registerRepo = locator<RegisterRepositoryImplementationService>();
   void registerFirebase() async {
@@ -40,10 +40,11 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
   void addUser() {
     final user = <String, String>{
       "email": emailController.text,
-      "Uid": _firebaseAuth.currentUser!.uid,
+      "Uid": _firebaseAuth.firebaseAuth.currentUser!.uid,
       "name": fullNameController.text
     };
-    _firebaseAuth.currentUser!.updateDisplayName(fullNameController.text);
+    _firebaseAuth.firebaseAuth.currentUser!
+        .updateDisplayName(fullNameController.text);
 
     _firestoreService.db
         .collection("users")
