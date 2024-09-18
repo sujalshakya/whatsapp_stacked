@@ -1,19 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:stacked/stacked.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
-import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/models/messages.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_other_messages/other_messages_repository_imp_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/repository/fetch_user_messages/user_messages_repository_imp_service.dart';
-import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/message_detail/message_detail_view.form.dart';
+import 'package:whatsapp_stacked/base/wrapper/form_viewmodel.dart';
 
-class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
-  final _firebaseAuth = locator<FirebaseAuthService>();
+class MessageDetailViewModel extends FormViewmodelWrapper
+    with $MessageDetailView {
   final _messageRepository = locator<UserMessagesRepositoryImp>();
   final _otherMessageRepository = locator<OtherMessagesRepositoryImp>();
-  final _firestoreService = locator<FirebaseDatabaseService>();
   final String uid;
   List<Messages> userMessages = [];
   List<Messages> otherMessages = [];
@@ -52,9 +49,9 @@ class MessageDetailViewModel extends FormViewModel with $MessageDetailView {
         "message": messageController.text,
         "timestamp": DateTime.now()
       };
-      _firestoreService.db
+      firestoreService.db
           .collection("chats")
-          .doc(_firebaseAuth.firebaseAuth.currentUser!.uid)
+          .doc(firebaseAuth.firebaseAuth.currentUser!.uid)
           .collection(uid)
           .doc()
           .set(message)

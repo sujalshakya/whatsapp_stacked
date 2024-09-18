@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:whatsapp_stacked/app/app.locator.dart';
 import 'package:whatsapp_stacked/app/app.router.dart';
 import 'package:whatsapp_stacked/base/models/user.dart';
-import 'package:whatsapp_stacked/services/firebase_auth_service.dart';
-import 'package:whatsapp_stacked/services/firebase_database_service.dart';
 import 'package:whatsapp_stacked/ui/views/register/register_view.form.dart';
 import 'package:whatsapp_stacked/ui/views/register/repository/register_repository_implementation_service.dart';
+import 'package:whatsapp_stacked/base/wrapper/form_viewmodel.dart';
 
-class RegisterViewModel extends FormViewModel with $RegisterView {
-  final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
-  final _firebaseAuth = locator<FirebaseAuthService>();
-  final _firestoreService = locator<FirebaseDatabaseService>();
+class RegisterViewModel extends FormViewmodelWrapper with $RegisterView {
   final _registerRepo = locator<RegisterRepositoryImp>();
 
   void registerFirebase() async {
@@ -25,13 +18,13 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
       if (register == "true") {
         addUser();
 
-        _navigationService.replaceWithHomeView();
-        _snackbarService.showSnackbar(
+        navigationService.replaceWithHomeView();
+        snackbarService.showSnackbar(
           message: "Registration Sucessful",
           duration: const Duration(seconds: 1),
         );
       } else {
-        _snackbarService.showSnackbar(
+        snackbarService.showSnackbar(
           message: register,
           duration: const Duration(seconds: 1),
         );
@@ -43,13 +36,13 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
   void addUser() {
     final User user = User(
         email: emailController.text,
-        uid: _firebaseAuth.firebaseAuth.currentUser!.uid,
+        uid: firebaseAuth.firebaseAuth.currentUser!.uid,
         name: fullNameController.text);
 
-    _firebaseAuth.firebaseAuth.currentUser!
+    firebaseAuth.firebaseAuth.currentUser!
         .updateDisplayName(fullNameController.text);
 
-    _firestoreService.db
+    firestoreService.db
         .collection("users")
         .doc()
         .set(user.toJson())
@@ -58,6 +51,6 @@ class RegisterViewModel extends FormViewModel with $RegisterView {
 
   /// Navigate to login view.
   void ontap() {
-    _navigationService.replaceWithLoginView();
+    navigationService.replaceWithLoginView();
   }
 }
